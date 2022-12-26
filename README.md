@@ -32,3 +32,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+imp stuff 
+web3.storage api token  = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGRhQjE0NzM2MTdFRDQ1OUFBMjREOUI5YWE5OEQ5YTkzMTFkNTVFNDkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE5NDA4MzY0NTksIm5hbWUiOiJEaWdpWmlwIn0._uFWtK_c-ZGJl0rQjWrSVTjBPPf-QIvz4thIi4yymNw

@@ -1,0 +1,89 @@
+/* Main Text */
+.mainText {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 2rem 2rem 1rem 2rem;
+    padding: 0;
+}
+
+.home__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+  gap: 6rem;
+  padding: 5%;
+}
+
+
+/* VIEW FILES BUTTON/DIV */
+.home__buttons>.view__files {
+    height: 60%;
+    width: 35%;
+    border: 2px solid white;
+    padding: 8% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.home__buttons>.view__files:hover {
+    background-color: white;
+    color: black;
+}
+
+/* SHARE FILE BUTTON/DIV */
+.home__buttons > .share__file {
+    height: 60%;
+    width: 35%;
+    border: 2px solid white;
+    padding: 8% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.home__buttons > .share__file:hover {
+    background-color: white;
+    color: black;
+}
+
+/* ADD FILE BUTTON/DIV */
+.home__buttons > .add__file {
+    height: 60%;
+    width: 35%;
+    border: 2px solid white;
+    padding: 8% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.home__buttons > .add__file:hover {
+    background-color: white;
+    color: black;
+}

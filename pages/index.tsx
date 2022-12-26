@@ -1,31 +1,21 @@
-import styles from '../styles/Home.module.css';
-import Link from 'next/link';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload, faShareAlt, faEye } from "@fortawesome/free-solid-svg-icons";
+// import styles from '../styles/Home.module.css';
 
+import { getSession } from '../utils/sessionhandling';
+import Homebody from '../components/Homebody/homebody';
 export default function Home() {
+  const session = getSession();
   return (
     <>
     
-      <div className={styles.mainText}>
-      Welcome AARYA!
+      <div >
+      Welcome {session!=null?session.displayname:'Alien plz login to proceed'}!
       </div>
-
-      {/* Buttons Div */}
-      <div className={styles.home__buttons}>
-        <Link className={styles.view__files} href="/viewfiles">
-          <FontAwesomeIcon icon={faEye} style={{marginRight: 20}}/> View Files
-        </Link>
-
-        <Link className={styles.share__file} href="/sharefile">
-          <FontAwesomeIcon icon={faShareAlt} style={{marginRight: 20}} /> Share File
-        </Link>
-
-        <Link className={styles.add__file} href="/addfile">
-          <FontAwesomeIcon icon={faUpload} style={{marginRight: 20}} /> Add File
-        </Link>
-
-      </div>
+      {session!=null?<Homebody/>:
+        <div>
+          hii
+        
+        </div>}
+      
 
     </>
   )
