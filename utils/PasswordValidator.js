@@ -2,7 +2,7 @@ import PasswordValidator from "password-validator";
 
 
 function validator (password){
-let schema = new PasswordValidator()
+let schema = new PasswordValidator();
 schema
 .is().min(8)                                    // Minimum length 8
 .is().max(100)                                  // Maximum length 100

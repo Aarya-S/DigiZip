@@ -13,6 +13,7 @@ export default function Register() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [isPasswordValid, setIsPasswordValid] = useState("");
+    const [isEmailValid, setIsEmailValid] = useState("");
     const navigate = useRouter();
 
 
@@ -21,17 +22,28 @@ export default function Register() {
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         setLoading(true);
+        setError("");
         if(password!=isPasswordValid){
             setError("Password mismatching confirm again");
             setLoading(false);
-        }else if(!validator(password)){
+            return false;
+        }
+        if(validator(password)!=true){
             setError("Password should contain atleast 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special character");
             setLoading(false);
-            return validator(password);
-        }else if(!validatedAdhaar()){
+            return false;
+        } 
+        let regex = new RegExp(/^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/);
+ 
+        if( adhaar == "" || adhaar.length <12 || regex.test(adhaar) == false) {
+            setError("Invalid Aadhaar Number");
             setLoading(false);
-            setError("Invalid Adhaar Number");
-        }else{
+            return false;
+        }
+        
+        
+        
+        if(error==""){
             const auth = getAuth(app);
                         createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
                             // Signed in 
@@ -78,15 +90,6 @@ export default function Register() {
         }
 
         setLoading(false);
-    }
-    const validatedAdhaar = () => {
-        var regexp=/^.*$/;
-        if(regexp.test(adhaar)){
-            return true;
-        }else{
-            window.alert("Invalid Aadhar no.");
-            return false;
-        }
     }
     
     return (
