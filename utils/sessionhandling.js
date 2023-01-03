@@ -1,6 +1,7 @@
 import CryptoJS from 'crypto-js';
 function createsession(User){
-    const ct = CryptoJS.AES.encrypt(JSON.stringify(User), 'my-secret-key@123').toString();
+    console.log(process.env.SECRETKEY);
+    const ct = CryptoJS.AES.encrypt(JSON.stringify(User), process.env.SECRETKEY).toString();
     sessionStorage.setItem('user', ct);
 }
 
@@ -10,7 +11,7 @@ function getSession() {
         // localStorage code here
     
     if(sessionStorage.getItem('user')!=null){
-        bytes  = CryptoJS.AES.decrypt(sessionStorage.getItem('user'), 'my-secret-key@123');
+        bytes  = CryptoJS.AES.decrypt(sessionStorage.getItem('user'), process.env.SECRETKEY);
     }}
     // console.log(bytes.toString());
     if(bytes!=null){

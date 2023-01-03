@@ -1,37 +1,46 @@
 import React, { useState} from 'react';
 import { useRouter } from 'next/router';
-import { getAuth, signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from '../utils/firebaseconfig';
-import { createsession,removeSession} from '../utils/sessionhandling';
+import { createsession,getSession,removeSession} from '../utils/sessionhandling';
+
 export default function Login() {
     // State variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [data,setData] = useState(new Object());
   const navigate = useRouter();
+  if(getSession()!=null){
+    // alert("Already Logged in")
+    navigate.push("/");
+  }
   // functions to handle the input fields
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setLoading(true);
     const auth = getAuth(app);
     if(auth.currentUser!=null){
-        removeSession();
+      removeSession();
       auth.signOut();
     }
-    signInWithEmailAndPassword(auth, email, password)
+    // console.log(email+" "+password)
+    await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      // session creation
-      createsession(user);
-      navigate.push("/");
+    //   // Signed in 
+     createsession(userCredential.user);
+      
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      setError(errorCode+" :- "+errorMessage);})
-    setLoading(false);
+      setError(errorCode+" :- "+errorMessage);
+    }).finally(()=>{
+      setLoading(false);
+      // createsession(data);
+      navigate.push("/")
+    });
+    // setLoading(false);
   }
 
     return (

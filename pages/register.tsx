@@ -15,7 +15,7 @@ export default function Register() {
     const [isPasswordValid, setIsPasswordValid] = useState("");
     const [isEmailValid, setIsEmailValid] = useState("");
     const navigate = useRouter();
-
+    
 
     
     // functions to handle the input fields
@@ -23,6 +23,7 @@ export default function Register() {
         e.preventDefault();
         setLoading(true);
         setError("");
+        
         if(password!=isPasswordValid){
             setError("Password mismatching confirm again");
             setLoading(false);
@@ -45,44 +46,54 @@ export default function Register() {
         
         if(error==""){
             const auth = getAuth(app);
+                        
+            // alert("User Registered Successfully sample hai ye");
+                setLoading(true)
+                axios.post("http://localhost:5000/api/auth/register",{
+                    email:email,
+                    aadhaar:adhaar
+                }).then((response)=>{
+                    if(response.status==200){
+                        const auth = getAuth(app);
                         createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
                             // Signed in 
                             const user = userCredential.user;
+                            const otp  = prompt("please enter the otp sent to your email id");
+                            if(otp==null){
+                                alert("we have registered you but you have not verified your aadharID please verify your aadharID");
+                                return false;
+                            }else{
+                            axios.post("http://localhost:5000/api/auth/check",{
+                                email:email,
+                                otp:otp
+                            }).then((response)=>{
+                                if(response.status==200){
+                                    alert("User Registered Successfully");
+                                }
+                                else{
+                                    alert("User Registration Failed");
+                                }
+                            }).catch((error)=>{
+                                setError(error.code+" :- "+error.message);
+                            })
                             // ...
-                        }).catch((error) => {
+                        }}).catch((error) => {
                             const errorCode = error.code;
                             const errorMessage = error.message;
                             setError(errorCode+" :- "+errorMessage);
                         })
-            alert("User Registered Successfully sample hai ye");
-                // setLoading(true)
-                // axios.post("http://localhost:5000/api/auth/register",{
-                //     email:email,
-                //     aadhaar:adhaar
-                // }).then((response)=>{
-                //     if(response.status==200){
-                //         const auth = getAuth(app);
-                //         createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-                //             // Signed in 
-                //             const user = userCredential.user;
-                //             // ...
-                //         }).catch((error) => {
-                //             const errorCode = error.code;
-                //             const errorMessage = error.message;
-                //             setError(errorCode+" :- "+errorMessage);
-                //         })
-                //         alert("User Registered Successfully");}
-                //     else{
-                //         alert("User Already Registered "+ response.data);
-                //     }
-                // }).catch((error)=>{
-                //     setError(error)
-                //     alert(error);
-                // }).finally(()=>{
-                //     setLoading(false);
-                //     if(error==""){
-                //     navigate.push("/login");}
-                // })
+                        }
+                    else{
+                        alert("User Already Registered "+ response.data);
+                    }
+                }).catch((error)=>{
+                    setError(error)
+                    alert(error);
+                }).finally(()=>{
+                    setLoading(false);
+                    if(error==""){
+                    navigate.push("/login");}
+                })
                 
 
                 
