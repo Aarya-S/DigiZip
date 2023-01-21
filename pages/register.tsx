@@ -15,7 +15,7 @@ export default function Register() {
     const [isEmailValid, setIsEmailValid] = useState("");
     const navigate = useRouter();
     const client = axios.create({
-        baseURL: "http://localhost:5000/auth" 
+        baseURL: "https://digizip.onrender.com/auth" 
       });
 
     
@@ -27,26 +27,22 @@ export default function Register() {
         
         if(password!=isPasswordValid){
             setError("Password mismatching confirm again");
-            setLoading(false);
             return false;
         }
         if(validator(password)!=true){
             setError("Password should contain atleast 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special character");
-            setLoading(false);
             return false;
         } 
         let regex = new RegExp(/^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/);
  
         if( adhaar == "" || adhaar.length <12 || regex.test(adhaar) == false) {
             setError("Invalid Aadhaar Number");
-            setLoading(false);
             return false;
         }
         
         
         
         if(error==""){
-            setLoading(true)
                 client.post("/register",{
                     email:email,
                     aadhaar:adhaar,
@@ -87,9 +83,8 @@ export default function Register() {
                 }).catch((error)=>{
                     setError("User or adhaar already registered")
                 }).finally(()=>{
-                    // setLoading(false);
                     if(error==""){
-                    // navigate.push("/login");     
+                        navigate.push("/login"); 
                     }
                 })
         }
