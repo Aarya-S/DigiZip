@@ -14,8 +14,8 @@ const Homebody = () => {
           <FontAwesomeIcon icon={faShareAlt} style={{marginRight: 20}} /> Share File
         </Link>
 
-        <Link className={styles.add__file} href="/addfile">
-          <FontAwesomeIcon icon={faUpload} style={{marginRight: 20}} /> Add File
+        <Link className={styles.add__file} href="/file">
+          <FontAwesomeIcon icon={faUpload} style={{marginRight: 20}} /> Files
         </Link>
 
       </div>

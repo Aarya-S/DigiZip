@@ -3,7 +3,7 @@ import validator from "../utils/PasswordValidator";
 import { getAuth, signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword } from "firebase/auth";
 import {app} from "../utils/firebaseconfig";
 import { useRouter } from 'next/router';
-import axios from "axios";
+import axios from 'axios';
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -11,11 +11,12 @@ export default function Register() {
     const [adhaar,setAdhaar] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
     const [isPasswordValid, setIsPasswordValid] = useState("");
     const [isEmailValid, setIsEmailValid] = useState("");
     const navigate = useRouter();
-    
+    const client = axios.create({
+        baseURL: "http://localhost:5000/auth" 
+      });
 
     
     // functions to handle the input fields
@@ -45,13 +46,10 @@ export default function Register() {
         
         
         if(error==""){
-            const auth = getAuth(app);
-                        
-            // alert("User Registered Successfully sample hai ye");
-                setLoading(true)
-                axios.post("http://localhost:5000/api/auth/register",{
+            setLoading(true)
+                client.post("/register",{
                     email:email,
-                    aadhaar:adhaar
+                    aadhaar:adhaar,
                 }).then((response)=>{
                     if(response.status==200){
                         const auth = getAuth(app);
@@ -63,7 +61,7 @@ export default function Register() {
                                 alert("we have registered you but you have not verified your aadharID please verify your aadharID");
                                 return false;
                             }else{
-                            axios.post("http://localhost:5000/api/auth/check",{
+                            client.post("/check",{
                                 email:email,
                                 otp:otp
                             }).then((response)=>{
@@ -82,33 +80,30 @@ export default function Register() {
                             const errorMessage = error.message;
                             setError(errorCode+" :- "+errorMessage);
                         })
-                        }
-                    else{
+                    }else{
                         alert("User Already Registered "+ response.data);
                     }
+                    console.log(response);
                 }).catch((error)=>{
-                    setError(error)
-                    alert(error);
+                    setError("User or adhaar already registered")
                 }).finally(()=>{
-                    setLoading(false);
+                    // setLoading(false);
                     if(error==""){
-                    navigate.push("/login");}
+                    // navigate.push("/login");     
+                    }
                 })
-                
-
-                
-            
         }
+
+    
+            
 
         setLoading(false);
     }
     
     return (
         <>
-            inside froms Signup <br/>
             {error?<span className="label warning">{error}</span>:""}
             {loading?<label htmlFor="loginId">just Showing loading here</label>:""}
-            {message}
             <br/>
                 <label htmlFor="loginId">Email ID:</label><br/>
                 <input type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
