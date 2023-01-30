@@ -7,6 +7,7 @@ export default function Dashboard() {
     // const[dob,setDob] = useState(session!=null?session.dob:'DOB not found')
     const[verifiy,setVerifiy] = useState(session!=null?session.verified:'Verification not found')
     const[resetpwd,setResetpwd] = useState('');
+    const[encrytFpwd,setencrytFpwd] = useState('');
 
     return (
         <>
@@ -15,6 +16,9 @@ export default function Dashboard() {
         Verified : {verifiy}<br></br>
         Change password :- <input type="password" placeholder="Enter new password" onChange={(e)=>setResetpwd(e.target.value)}></input>
          <button>Reset</button>
+         <br/>
+        set your default FileEncryption password :- <input type="password" placeholder="Enter new password" onChange={(e)=>setencrytFpwd(e.target.value)}></input>
+        <button>set</button>
         </>
     )
 }

@@ -25,7 +25,7 @@ const Navbar = () => {
             :
             <div>
               <Link className={styles.navLink}  href="/dashboard">dashboard</Link><br></br>
-              <a onClick={()=>signout()}>signOut</a>
+              <a onClick={signout}>signOut</a>
             </div>
             }
             <Link className={styles.navLink}  href="/login"><b>{session!=null?session.displayname:'login'}</b></Link>
