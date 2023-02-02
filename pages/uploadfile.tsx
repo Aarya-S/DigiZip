@@ -2,9 +2,11 @@ import { ChangeEvent, useState } from 'react'
 import extractMetadata from "..//utils/ExtractMetadata";
 import {compressArrayBuffer, decompressArrayBuffer} from "../utils/CompressFile";
 import { handleDownload } from '../utils/HandleDownload';
+import { encryptArrayBuffer,decryptArrayBuffer } from '../utils/EncryptFile';
 export default function uploadfile() {
 
     const[file,setFile] = useState(new ArrayBuffer(0)); 
+    const[outFile,setOutFile] = useState(new String);
     const[metadata,setMetadata] = useState(Object);
 
 
@@ -25,9 +27,18 @@ export default function uploadfile() {
         }
     }
     const upload = async () => {
-        if(file!=null){
+        if(file!=null && file.byteLength>0){
           const compressedFile = compressArrayBuffer(file);
           setFile(compressedFile);
+          try{
+          const encryptedFile = encryptArrayBuffer(compressedFile, "sussysus");
+          setOutFile(encryptedFile);
+          }
+          catch(err){
+            console.log(err);
+          }
+          // console.log(decompressedFile);
+          
         // console.log(compressedFile);
         }
         
@@ -36,7 +47,8 @@ export default function uploadfile() {
     return (
         <>
         <input type="file" onChange={(e)=>handleChange(e)} accept="application/pdf"></input>
-        <button onClick={upload}>Upload</button>
+        <button onClick={upload} hidden={file.byteLength==0}>Upload</button>
+        <button onClick={()=>handleDownload(file)} hidden={file.byteLength==0}>Download</button>
         {err}
         </>
     )

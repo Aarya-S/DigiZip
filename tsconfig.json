@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/Metadataextracter.js", "components/CompressFile/CompressFile.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/Metadataextracter.js", "components/CompressFile/CompressFile.js", "utils/EncryptFile.ts"],
   "exclude": ["node_modules"]
 }
