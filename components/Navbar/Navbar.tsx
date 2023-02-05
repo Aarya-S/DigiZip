@@ -4,10 +4,10 @@ import { getSession, removeSession } from '../../utils/sessionhandling';
 import { useRouter } from 'next/router';
 
 const Navbar = () => {
-  const session = getSession();
+  const session = getSession('user');
   const navigate = useRouter();
   const signout = () => {
-    removeSession();
+    removeSession('user');
     navigate.push("/");
   }
   return (

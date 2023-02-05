@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from '../utils/firebaseconfig';
 import { createsession,getSession,removeSession} from '../utils/sessionhandling';
+import axios from 'axios';
 
 export default function Login() {
     // State variables
@@ -12,7 +13,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [data,setData] = useState(new Object());
   const navigate = useRouter();
-  if(getSession()!=null){
+  if(getSession('user')!=null){
     // alert("Already Logged in")
     navigate.push("/");
   }
@@ -22,14 +23,20 @@ export default function Login() {
     setLoading(true);
     const auth = getAuth(app);
     if(auth.currentUser!=null){
-      removeSession();
+      removeSession('user');
       auth.signOut();
     }
     // console.log(email+" "+password)
     await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
     //   // Signed in 
-     createsession(userCredential.user);
+     createsession(userCredential.user,'user');
+      axios.get('https://digizip.onrender.com/auth/getuser?email='+userCredential.user.email).then((res)=>{
+          createsession(res.data,'userdetail');
+      }).catch((err)=>{
+          // console.log(err);
+          setError(err.response.data);
+      })
       
     }).catch((error) => {
       const errorCode = error.code;
@@ -38,7 +45,7 @@ export default function Login() {
     }).finally(()=>{
       setLoading(false);
       // createsession(data);
-      navigate.push("/")
+      // navigate.push("/")
     });
     // setLoading(false);
   }

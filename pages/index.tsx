@@ -3,7 +3,7 @@
 import { getSession } from '../utils/sessionhandling';
 import Homebody from '../components/Homebody/Homebody';
 export default function Home() {
-  const session = getSession();
+  const session = getSession('user');
   return (
     <>
     
