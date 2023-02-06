@@ -1,0 +1,61 @@
+.heads {
+    font-family: Arial, sans-serif;
+    background-image: url("../public/backg_1920x1080.jpg"); 
+    background-size:cover;
+    background-position: center;
+    color: #ffffff;
+    /*display: flex;
+    flex-direction: column; */
+    /* padding: 20px; */
+    align-items: center;
+    justify-content: center;
+    height:42vw;
+    text-align: center;
+  }
+  
+  .header {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  .header span {
+    display: block;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .main-content {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .main-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .main-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-content button {
+    background-color: #FFF;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .main-content button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }

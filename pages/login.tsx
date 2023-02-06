@@ -63,7 +63,7 @@ export default function Login() {
                 <button onClick={handleSubmit}>Login</button>}
             <br/>
             {/* <button onClick={handleGSubmit}>Google</button> */}
-            <button onClick={(e)=>{navigate.push('/register')}}>signup</button>
+            <button onClick={(e)=>{navigate.push('/register')}}>Signup</button>
             {email+" "+password}
       </div>
     )

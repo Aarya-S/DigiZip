@@ -21,14 +21,14 @@ const Navbar = () => {
         <div className={styles.navbar__links}>
             <Link className={styles.navLink}  href="/about">About</Link>
             {session==null?
-              <Link className={styles.navLink}  href="/register">register</Link>
+              <Link className={styles.navLink}  href="/register">Register</Link>
             :
             <div>
-              <Link className={styles.navLink}  href="/dashboard">dashboard</Link><br></br>
-              <a onClick={signout}>signOut</a>
+              <Link className={styles.navLink}  href="/dashboard">Dashboard</Link><br></br>
+              <a onClick={signout}>Signout</a>
             </div>
             }
-            <Link className={styles.navLink}  href="/login"><b>{session!=null?session.displayname:'login'}</b></Link>
+            <Link className={styles.navLink}  href="/login"><b>{session!=null?session.displayname:'Login'}</b></Link>
             
         </div>
     </div>

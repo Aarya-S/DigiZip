@@ -1,3 +1,6 @@
+body{
+    margin-top: 20px;
+}
 .headerText {
     font-family: "Roboto", sans-serif;
     font-size: 1.8rem;
