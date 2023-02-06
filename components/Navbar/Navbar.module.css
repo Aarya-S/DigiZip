@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 .navbar {
-    position: fixed;
+    position:absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -14,7 +14,6 @@
     left: 0px;
     right: 0px;
     top: 0px;
-    margin-bottom:20px;
 }
 
 .navbar__logo {

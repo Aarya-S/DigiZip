@@ -14,15 +14,14 @@ export default function Home() {
       </div> 
       {session!=null?<Homebody/>:
         <div>
-           <div>
-      DigiZip
-      <span>Secure Document Delivery</span>
-    </div>
     <div>
-      <h2>Send Documents Securely</h2>
-      <p>Easily send important documents to organizations for verification purposes with DigiZip. Our secure platform ensures that your documents are delivered safely and privately.</p>
+      <h2>Store and Send Documents Securely <hr className='hr1'/></h2> 
+      <p>Easily send important documents to organizations for verification purposes with DigiZip.</p> <br />
+       <p> Our secure platform ensures that your documents are delivered safely and privately.</p>
+       <br />
       <div>
-        <button>Get Started</button>
+        <button>Get Started <span className="material-symbols-outlined">mood</span>
+        </button>
       </div>
     </div>
         </div>}
