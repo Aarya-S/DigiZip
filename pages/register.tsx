@@ -104,9 +104,9 @@ export default function Register() {
                 <input type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
                 <label htmlFor="pass">Password:</label><br/>
                 <input type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
-                <label htmlFor="confrmPass">confirm Password:</label><br/>
+                <label htmlFor="confrmPass">Confirm Password:</label><br/>
                 <input type="password" onChange={(e)=>{setIsPasswordValid(e.target.value)}} id="confrmPass" name="confrmPass"/><br/>
-                <label htmlFor="adhaar">Adhaar no:</label><br/>
+                <label htmlFor="adhaar">Aadhaar Number:</label><br/>
                 <input type="text" onChange={(e)=>{setAdhaar(e.target.value)}} id="adhaar" name="adhaar"/><br/>
                 {
                     email+ " "+password+" "+adhaar
