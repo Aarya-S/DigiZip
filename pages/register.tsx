@@ -4,6 +4,7 @@ import { getAuth, signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassw
 import {app} from "../utils/firebaseconfig";
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import styles from "../styles/Register.module.css";
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -96,24 +97,65 @@ export default function Register() {
     }
     
     return (
-        <>
-            {error?<span className="label warning">{error}</span>:""}
-            {loading?<label htmlFor="loginId">just Showing loading here</label>:""}
-            <br/>
-                <label htmlFor="loginId">Email ID:</label><br/>
-                <input type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
-                <label htmlFor="pass">Password:</label><br/>
-                <input type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
-                <label htmlFor="confrmPass">Confirm Password:</label><br/>
-                <input type="password" onChange={(e)=>{setIsPasswordValid(e.target.value)}} id="confrmPass" name="confrmPass"/><br/>
-                <label htmlFor="adhaar">Aadhaar Number:</label><br/>
-                <input type="text" onChange={(e)=>{setAdhaar(e.target.value)}} id="adhaar" name="adhaar"/><br/>
-                {
-                    email+ " "+password+" "+adhaar
-                }
-            <br/>
-            {loading ? <div>Loading...</div> : <button onClick={handleSubmit}>Signup</button>}
+        <div className={styles.window1}>
 
-        </>
+            <div className={styles.card}>
+              
+              <div className={styles.pp}>
+                Are You an <br /> User <br />
+                </div>
+                <br />
+                {error?<label htmlFor="error">{error}</label>:""}         
+                <label style={{alignSelf:'center'}} htmlFor="loginId" >Enter Email ID/Set UserName</label>
+                <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="pass" >Set Password</label>
+                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="pass" >Confirm Password</label>
+                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="loginId" >Aadhar Number:</label>
+                <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
+                <button style={{width:'5vw', marginLeft:'10px'}} onClick={handleSubmit}>Get OTP</button>
+                <label style={{alignSelf:'center'}} htmlFor="loginId" >Verify OTP:</label>
+                <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
+                {loading?<label htmlFor="loading">Loading...</label>:
+                <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>Login</button>}
+                
+            <br/>
+            {/* <button onClick={handleGSubmit}>Google</button> */}
+            {/* <button onClick={(e)=>{navigate.push('/register')}}>Signup</button> */}
+            {/* {email+" "+password} */}
+
+          
+            </div>
+
+            <div className={styles.card}>
+            
+              <div className={styles.pp}>
+                Are You an Organization <br />
+                </div>
+                <br />
+                {error?<label htmlFor="error">{error}</label>:""}         
+                <label style={{alignSelf:'center'}} htmlFor="loginId">Organization Name</label>
+                <input style={{alignSelf:'center'}} type="text" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="pass">GST Number</label>
+                <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="loginId" >Enter Admin Email ID</label>
+                <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="pass" >Set Password</label>
+                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="pass" >Confirm Password</label>
+                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
+                <button style={{width:'5vw', marginLeft:'10px'}} onClick={handleSubmit}>Get OTP</button>
+                <label style={{alignSelf:'center'}} htmlFor="loginId" >Verify OTP:</label>
+                <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
+                {loading?<label htmlFor="loading">Loading...</label>:
+                <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>Login</button>}
+            <br/>
+            {/* <button onClick={handleGSubmit}>Google</button> */}
+            {/* <button onClick={(e)=>{navigate.push('/register')}}>Signup</button>
+            {email+" "+password} */}
+
+            </div>
+      </div>
     )
 }

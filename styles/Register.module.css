@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&display=swap');
 
 .window1 {
-    background-image: url("../public/backg_1920x1080.jpg"); 
+  background-image: url("../public/backg_1920x1080.jpg"); 
   background-size:cover;
-  background-position:center;
+  background-position: center;
     display: flex;
     flex-direction: row;
-    padding-top: 25vh;
+    padding-top: 15vh;
     padding-left: 35px;
     padding-right: 35px;
-    padding-bottom: 35px;
+    padding-bottom: 45px;
     justify-content: space-around;
 }
 .headerText {
@@ -58,9 +58,11 @@
 }
 
 .card {
+    padding-top: 30px;
+    padding-bottom: 20px;
     box-sizing: border-box;
     width: 20vw;
-    height: 65vh;
+    height: 90vh;
     background: rgba(217, 217, 217, 0.58);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
