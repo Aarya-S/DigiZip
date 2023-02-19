@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "noImplicitThis": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/Metadataextracter.js", "components/CompressFile/CompressFile.js", "utils/EncryptFile.ts"],
   "exclude": ["node_modules"]

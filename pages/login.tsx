@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import { useState} from 'react';
 import { useRouter } from 'next/router';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from '../utils/firebaseconfig';
@@ -16,7 +16,7 @@ export default function Login() {
   const navigate = useRouter();
   if(getSession('user')!=null){
     // alert("Already Logged in")
-    navigate.push("/");
+    // navigate.push("/");
   }
   // functions to handle the input fields
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
