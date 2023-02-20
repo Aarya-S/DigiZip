@@ -1,7 +1,8 @@
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 import axios from "axios";
 import { useState } from "react";
 import { getSession ,createsession} from "../utils/sessionhandling";
+import styles from '../styles/dashboard.module.css';
 
 export default function Dashboard() {
     const[session,setSession] = useState(getSession('userdetail'));
@@ -24,7 +25,9 @@ export default function Dashboard() {
         })
     }
     return (
-        <div>
+        <>
+        <br /><br /><br /><br /><br />
+        <div className={styles.dashboard}>
         email : {name}<br></br>
         Verified : {verifiy? "Your account is verified":
             <div>
@@ -36,5 +39,6 @@ export default function Dashboard() {
         set your default FileEncryption password :- <input type="password" placeholder="Enter new password" onChange={(e)=>setencrytFpwd(e.target.value)}></input>
         <button>set</button>
         </div>
+        </>
     )
 }
