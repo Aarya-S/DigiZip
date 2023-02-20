@@ -16,8 +16,8 @@ export default function Home() {
         <div>
     <div>
       <h2>Store and Send Documents Securely <hr className='hr1'/></h2> 
-      <p>Easily send important documents to organizations for verification purposes with DigiZip.</p> <br />
-       <p> Our secure platform ensures that your documents are delivered safely and privately.</p>
+      <text>Easily send important documents to organizations for verification purposes with DigiZip.</text> <br />
+       <text> Our secure platform ensures that your documents are delivered safely and privately.</text>
        <br />
       <div>
         <button>Get Started <span className="material-symbols-outlined">mood</span>
