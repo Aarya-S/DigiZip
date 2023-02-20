@@ -26,12 +26,11 @@ const Navbar = () => {
             :
             <>
               <Link className={styles.navLink}  href="/dashboard">Dashboard</Link>
-              <a className={styles.navLink} onClick={()=>signout()}>Signout</a>
+              
+              <a className={styles.navLink} onClick={signout}>Signout</a>
             </>
-            } 
-            
-            
-            <Link className={styles.navLink} hidden={session?true:false} href="/login"><b>Login</b></Link> 
+            }
+            <Link className={styles.navLink}  href="/login"><b>{session!=null?session.displayname:'Login'}</b></Link>
             
         </div>
     </div>
