@@ -1,5 +1,6 @@
 import { getSession } from '../utils/sessionhandling';
 import Homebody from '../components/Homebody/Homebody';
+import Link from 'next/link';
 export default function Home() {
   const session = getSession('user');
   return (
@@ -20,7 +21,7 @@ export default function Home() {
        <p> Our secure platform ensures that your documents are delivered safely and privately.</p>
        <br />
       <div>
-        <button>Get Started <span className="material-symbols-outlined">mood</span>
+        <button><Link href={'/register'}>Get Started </Link><span className="material-symbols-outlined">mood</span>
         </button>
       </div>
     </div>

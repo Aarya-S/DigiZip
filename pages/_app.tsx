@@ -5,14 +5,15 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 import type { AppProps } from 'next/app'
 import { NextUIProvider } from '@nextui-org/react';
-import Navbar from '../components/Navbar/Navbar'
+import dynamic from 'next/dynamic'
+// import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
-
+const NavBar = dynamic(() => import('../components/Navbar/Navbar'), {ssr: false});
 export default function App({ Component, pageProps }: AppProps) {
   return (
   
   <NextUIProvider>
-    <Navbar />
+    <NavBar />
     <Component {...pageProps} />
     <Footer />
   </NextUIProvider>

@@ -38,7 +38,7 @@ export default function Login() {
           // console.log(err);
           setError(err.response.data);
       })
-      
+      navigate.push("/")
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -46,7 +46,6 @@ export default function Login() {
     }).finally(()=>{
       setLoading(false);
       createsession(data);
-      navigate.push("/")
     });
     // setLoading(false);
   }

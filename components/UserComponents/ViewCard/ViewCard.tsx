@@ -6,6 +6,8 @@ import { Modal, Table, Text, Tooltip, Button } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import React from "react";
 
+import { retrieveFiles } from "../../../utils/Web3Config&Functions";
+
 // user structure
 type UserType = {
     id: number, //untouchable
@@ -48,6 +50,16 @@ var toggleFooter = function() {
 // modal ka code daalna hai
 
 // untouchable code above ⬆️⬆️⬆️⬆️
+
+
+// Handlers
+const HandleView = () => {
+    retrieveFiles("bafybeidjai2vj5vqjkba6s74bqyfbyevlvjtaj7nwgpxtrh4a643adz7ny");
+}
+
+
+
+
 
 
 export default function ViewCardUser() {
@@ -138,7 +150,7 @@ export default function ViewCardUser() {
             <div className={styles.actionButtonsDiv}>
                 {/* View file button */}
                 <Tooltip content="View file" placement="top" hideArrow color="invert">
-                <button className={styles.actionButton}>
+                <button className={styles.actionButton} onClick={HandleView}>
                     <FontAwesomeIcon icon={faEye} style={{ color: "black", fontSize: "1.3rem"}} />
                 </button>
                 </Tooltip>
