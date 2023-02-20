@@ -25,6 +25,7 @@
     "next": "13.0.3",
     "pako": "^2.1.0",
     "password-validator": "^5.3.0",
+    "pdfjs-dist": "^3.3.122",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "scrypt-js": "^3.0.1",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",
-    "@types/pako": "^2.0.0"
+    "@types/pako": "^2.0.0",
+    "@types/pdfjs-dist": "^2.10.378"
   }
 }

@@ -24,8 +24,9 @@ const Navbar = () => {
               <Link className={styles.navLink}  href="/register">Register</Link>
             :
             <div>
-              <Link className={styles.navLink}  href="/dashboard">Dashboard</Link><br></br>
-              <a onClick={signout}>Signout</a>
+              <Link className={styles.navLink}  href="/dashboard">Dashboard</Link>
+              
+              <a className={styles.navLink} onClick={signout}>Signout</a>
             </div>
             }
             <Link className={styles.navLink}  href="/login"><b>{session!=null?session.displayname:'Login'}</b></Link>

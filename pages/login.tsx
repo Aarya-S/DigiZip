@@ -45,8 +45,8 @@ export default function Login() {
       setError(errorCode+" :- "+errorMessage);
     }).finally(()=>{
       setLoading(false);
-      // createsession(data);
-      // navigate.push("/")
+      createsession(data);
+      navigate.push("/")
     });
     // setLoading(false);
   }
@@ -84,10 +84,10 @@ export default function Login() {
                 </div>
                 <br />
                 {error?<label htmlFor="error">{error}</label>:""}         
-                <label style={{alignSelf:'center'}} htmlFor="loginId">Organization Name/Employee ID:</label>
-                <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
-                <label style={{alignSelf:'center'}} htmlFor="pass">Password:</label>
-                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/><br />
+                <label style={{alignSelf:'center'}} htmlFor="orgloginId">Organization Name/Employee ID:</label>
+                <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="orgloginId" name="orgloginId"/><br/>
+                <label style={{alignSelf:'center'}} htmlFor="orgpass">Password:</label>
+                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="orgpass" name="orgpass"/><br/><br />
                 {loading?<label htmlFor="loading">Loading...</label>:
                 <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>Login</button>}
             <br/>
