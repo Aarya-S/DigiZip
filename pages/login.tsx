@@ -12,11 +12,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [data,setData] = useState(new Object());
+
+  const [orgemail, setOrgEmail] = useState("");
+  const [orgpassword, setOrgPassword] = useState("");
+  const [orgerror, setOrgerror] = useState("");
   const navigate = useRouter();
-  if(getSession('user')!=null){
-    // alert("Already Logged in")
-    // navigate.push("/");
+  if(error=="" && (getSession('user')!=null || getSession('orgdetail')!=null || getSession('userdetail')!=null)){
+    navigate.push("/");
   }
   // functions to handle the input fields
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
@@ -33,21 +35,56 @@ export default function Login() {
     //   // Signed in 
      createsession(userCredential.user,'user');
       axios.get('https://digizip.onrender.com/auth/getuser?email='+userCredential.user.email).then((res)=>{
-          createsession(res.data,'userdetail');
+          // console.log(res);
+          if(res.status==200){
+          createsession(res.data,'userdetail');}
+          else{
+            setError(res.data);
+          }
       }).catch((err)=>{
-          // console.log(err);
           setError(err.response.data);
+          alert(err.response.data)
       })
-      navigate.push("/")
+      if(getSession('userdetail')!=null){
+        navigate.push("/")
+      }
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       setError(errorCode+" :- "+errorMessage);
     }).finally(()=>{
       setLoading(false);
-      createsession(data);
     });
     // setLoading(false);
+  }
+
+  const handleOrgSubmit = async (e: { preventDefault: () => void; }) => {
+      e.preventDefault();
+      setLoading(true);
+      const auth = getAuth(app);
+      if(auth.currentUser!=null){
+        removeSession('user');
+        auth.signOut();
+      }
+      await signInWithEmailAndPassword(auth, orgemail, orgpassword).then((userCredential) => {
+        // Signed in
+        createsession(userCredential.user,'user');
+        axios.get('https://digizip.onrender.com/org/get?email='+userCredential.user.email).then((res)=>{
+            console.log(res.data);
+            createsession(res.data,'orgdetail');  
+        }).catch((err)=>{ 
+            // console.log(err);
+            setOrgerror(err.response.data);
+        })
+        navigate.push("/")
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setOrgerror(errorCode+" :- "+errorMessage);
+      }).finally(()=>{
+        setLoading(false);
+      });
+      setLoading(false);
   }
 
     return (
@@ -61,7 +98,7 @@ export default function Login() {
                 </div>
                 <br />
                 {error?<label htmlFor="error">{error}</label>:""}         
-                <label style={{alignSelf:'center'}} htmlFor="loginId" >Email ID/UserName:</label>
+                <label style={{alignSelf:'center'}} htmlFor="loginId" >Email ID:</label>
                 <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="pass" >Password:</label>
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/><br />
@@ -82,13 +119,13 @@ export default function Login() {
                 For Organizations <br />
                 </div>
                 <br />
-                {error?<label htmlFor="error">{error}</label>:""}         
-                <label style={{alignSelf:'center'}} htmlFor="orgloginId">Organization Name/Employee ID:</label>
-                <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="orgloginId" name="orgloginId"/><br/>
+                {orgerror?<label htmlFor="error">{orgerror}</label>:""}         
+                <label style={{alignSelf:'center'}} htmlFor="orgloginId">Admin ID:</label>
+                <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setOrgEmail(e.target.value)}} id="orgloginId" name="orgloginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="orgpass">Password:</label>
-                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="orgpass" name="orgpass"/><br/><br />
+                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setOrgPassword(e.target.value)}} id="orgpass" name="orgpass"/><br/><br />
                 {loading?<label htmlFor="loading">Loading...</label>:
-                <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>Login</button>}
+                <button style={{alignSelf:'center',width:'10vw'}} onClick={handleOrgSubmit}>Login</button>}
             <br/>
             {/* <button onClick={handleGSubmit}>Google</button> */}
             {/* <button onClick={(e)=>{navigate.push('/register')}}>Signup</button>

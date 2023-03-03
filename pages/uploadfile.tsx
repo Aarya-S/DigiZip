@@ -3,6 +3,7 @@ import extractMetadata from "../utils/ExtractMetadata";
 import {compressArrayBuffer, decompressArrayBuffer} from "../utils/CompressFile";
 import { encryptArrayBuffer,decryptArrayBuffer } from '../utils/EncryptFile';
 import {storeFiles} from '../utils/Web3Config&Functions';
+import { handleDownload } from '../utils/HandleDownload';
 export default function uploadfile() {
 
     const[file,setFile] = useState(new ArrayBuffer(0)); 
@@ -33,9 +34,10 @@ export default function uploadfile() {
           setFile(compressedFile);
           try{
           const encryptedFile = encryptArrayBuffer(compressedFile, "sussysus");
-          // setOutFile(encryptedFile);
-          const CID = storeFiles(encryptedFile,"somename")
-          console.log(CID);
+          setOutFile(encryptedFile);
+          // const CID = storeFiles(encryptedFile,"somename")
+          // console.log(CID);
+
 
           }
           catch(err){
@@ -48,6 +50,8 @@ export default function uploadfile() {
         
     }
 
+    
+
     return (
         <>
         <br></br>
@@ -57,6 +61,7 @@ export default function uploadfile() {
 
         <input type="file" onChange={(e)=>handleChange(e)} accept="application/pdf"></input>
         <button onClick={upload} hidden={file.byteLength==0}>Upload</button>
+        <br></br>
         {err}
         </>
     )

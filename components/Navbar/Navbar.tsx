@@ -5,9 +5,12 @@ import { useRouter } from 'next/router';
 
 const Navbar = () => {
   const session = getSession('user');
+  const orgdash = getSession('orgdetail');
   const navigate = useRouter();
   const signout = () => {
     removeSession('user');
+    removeSession('orgdetail');
+    removeSession('userdetail');
     navigate.push("/");
   }
   return (
@@ -24,7 +27,8 @@ const Navbar = () => {
               <Link className={styles.navLink}  href="/register">Register</Link>
             :
             <>
-              <Link className={styles.navLink}  href="/dashboard">Dashboard</Link>
+              {orgdash==null?<Link className={styles.navLink}  href="/dashboard">Dashboard</Link>:
+              <Link className={styles.navLink}  href="/orgdashboard">Dashboard</Link>}
               
               <a className={styles.navLink} onClick={signout}>Signout</a>
             </>
