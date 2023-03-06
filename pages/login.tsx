@@ -102,7 +102,7 @@ export default function Login() {
                 <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="pass" >Password:</label>
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/><br />
-                {loading?<label htmlFor="loading">Loading...</label>:
+                {loading?<label htmlFor="loading" style={{alignSelf:'center'}}>Loading...</label>:
                 <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>Login</button>}
                 
             <br/>

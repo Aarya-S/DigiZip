@@ -9,7 +9,7 @@
     padding-top: 15vh;
     padding-left: 35px;
     padding-right: 35px;
-    padding-bottom: 45px;
+    padding-bottom: 65px;
     justify-content: space-around;
 }
 .headerText {
@@ -62,8 +62,8 @@
     padding-bottom: 20px;
     box-sizing: border-box;
     width: 20vw;
-    height: 90vh;
-    background: rgba(217, 217, 217, 0.58);
+    height: 95vh;
+    background: rgba(90, 77, 77, 0.15);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(6px);

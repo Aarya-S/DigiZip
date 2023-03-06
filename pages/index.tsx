@@ -16,12 +16,13 @@ export default function Home() {
       {session!=null?<Homebody/>:
         <div>
     <div>
-      <h2>Store and Send Documents Securely <hr className='hr1'/></h2> 
-      <text>Easily send important documents to organizations for verification purposes with DigiZip.</text> <br />
+      <br /><br />
+      <h2>Store and Send Documents Securely <hr className='hr1'/></h2> <br /><br />
+      <text>Easily send important documents to organizations for verification purposes with DigiZip.</text> <br /><br />
        <text> Our secure platform ensures that your documents are delivered safely and privately.</text>
-       <br />
+       <br /><br /><br />
       <div>
-        <button><Link href={'/register'}>Get Started </Link><span className="material-symbols-outlined">mood</span>
+        <button><Link style={{color:'black'}} href={'/register'}>Get Started </Link><span className="material-symbols-outlined">mood</span>
         </button>
       </div>
     </div>

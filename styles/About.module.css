@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+.window2 {
+  background: rgb(115,108,108);
+background: linear-gradient(94deg, rgba(115,108,108,1) 0%, rgba(41,39,39,1) 60%);
+    background-size: cover;
+    padding-top: 15vh;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 65px;
+    justify-content:center;
+}
+
+.headi{
+  text-align: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+}
+
+#Collapse{
+  background-color: blueviolet;
+  color: azure;
+}

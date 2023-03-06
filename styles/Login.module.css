@@ -61,7 +61,7 @@
     box-sizing: border-box;
     width: 20vw;
     height: 65vh;
-    background: rgba(217, 217, 217, 0.58);
+    background: rgba(90, 77, 77, 0.15);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(6px);
