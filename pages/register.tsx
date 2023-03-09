@@ -5,6 +5,10 @@ import {app} from "../utils/firebaseconfig";
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import styles from "../styles/Register.module.css";
+import { createsession } from "../utils/sessionhandling";
+import { verify } from "crypto";
+import CryptoJS from 'crypto-js';
+
 
 export default function Register() {
     // general params
@@ -16,6 +20,7 @@ export default function Register() {
     const [adhaar,setAdhaar] = useState("");
     const [error, setError] = useState("");
     const [isPasswordValid, setIsPasswordValid] = useState("");
+    const [OTP, setOTP] = useState("");
 
     // Org Params
     const [name, setName] = useState("");
@@ -24,11 +29,13 @@ export default function Register() {
     const [adminPassword, setAdminPassword] = useState("");
     const [adminConfirmPassword, setAdminConfirmPassword] = useState("");
     const [orgerror, setOrgerror] = useState("");
+    const [orgOTP, setOrgOTP] = useState("");
     
     // helpers
     const navigate = useRouter();
     const client = axios.create({
         baseURL: "https://digizip.onrender.com" 
+        // baseURL: "http://localhost:5000"
       });
 
 
@@ -56,30 +63,26 @@ export default function Register() {
         if(error==""){
                 client.post("/auth/register",{
                     email:email,
-                    aadhaar:adhaar,
+                    aadhaar:CryptoJS.AES.encrypt(JSON.stringify(adhaar), "sussybaka").toString(),
                 }).then((response)=>{
                     if(response.status==200){
                         const auth = getAuth(app);
+                        console.log(response);
                         createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
                             // Signed in 
                             const user = userCredential.user;
-                            navigate.push("/login"); 
                         }).catch((error) => {
-                            const errorCode = error.code;
                             const errorMessage = error.message;
-                            setError(errorCode+" :- "+errorMessage);
+                            setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
                         })
-                    }else{
-                        alert(response.data);
                     }
-                    console.log(response);
                 }).catch((error)=>{
+                    // setError("otp not valid");
                     setError(error.response.data);
+                    setLoading(false);
+                    // setError(error);
                 })
-        }else{
-            setLoading(false);
         }
-        setLoading(false);
     }
 
     // handle Org Registration
@@ -101,32 +104,72 @@ export default function Register() {
             client.post("/org/make",{
                 "name": name,
                 "gst_no": gstNo,
-                "admin": adminEmail,
+                "admin": adminEmail
             }).then((response)=>{
                 if(response.status==200){
                     const auth = getAuth(app);
                     createUserWithEmailAndPassword(auth, adminEmail, adminPassword).then((userCredential) => {
                         // Signed in 
                         const user = userCredential.user;
-                        navigate.push("/login"); 
                     }).catch((error) => {
                         const errorCode = error.code;
                         const errorMessage = error.message;
-                        setOrgerror(errorCode+" :- "+errorMessage);
+                        setOrgerror(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
                     })
-                }else{
-                    setOrgerror(response.data);
                 }
             }).catch((error)=>{
                 setOrgerror(error.response.data);
-            }).finally(()=>{
-                navigate.push('/login')
                 setLoading(false);
             })
-        }else{
-            setLoading(false);
         }
     }
+
+    // handle User OTP
+    const handleotpUser = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("")
+        await client.post("/auth/check",{
+            email:email,
+            otp:OTP
+        }).then((response)=>{
+            if(response.status==200){
+                alert("OTP Verified "+response.data);
+                navigate.push('/login')
+            }else{
+                setError(response.data);
+            }
+        }).catch((error)=>{
+            setError(error.response.data);
+            return;
+        })
+        setLoading(false);
+    }  
+
+    // handle Org OTP
+    const handleotpOrg = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        setLoading(true);
+        setOrgerror("")
+        await client.post("/org/checkotp",{
+            admin:adminEmail,
+            otp:orgOTP
+        }).then((response)=>{
+            if(response.status==200){
+                alert("OTP Verified "+response.data);
+                navigate.push('/login')
+            }else{
+                // setError(response.data);
+                console.log(response.data);
+            }
+        }).catch((error)=>{
+            setOrgerror(error.response.data);
+            return;
+        })
+        setLoading(false);
+    }
+
+
 
     return (
         <div className={styles.window1}>
@@ -146,9 +189,13 @@ export default function Register() {
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setIsPasswordValid(e.target.value)}} id="cnfrmpass" name="pass"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="aadhar" >Aadhar Number:</label>
                 <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setAdhaar(e.target.value)}} id="aadhar" name="loginId"/><br/>
-                {loading?<label htmlFor="loading">Loading...</label>:
-                <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>SignUP</button>}
                 
+                {loading?<label htmlFor="loading">Loading...</label>:
+                    <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>SignUp</button>}
+                {loading==true && error==""?<><label style={{alignSelf:'center'}} htmlFor="otp" >Verify OTP:</label>
+                <input style={{alignSelf:'center'}} onChange={(e)=>{setOTP(e.target.value)}} id="otp" name="otp"/><br/>
+                <button style={{alignSelf:'center',width:'10vw'}} onClick={handleotpUser}>Submit</button></>:""}
+
             <br/>
 
           
@@ -177,7 +224,10 @@ export default function Register() {
                     <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setAdminConfirmPassword(e.target.value)}} id="orgcpass" name="orgcpass"/><br/>
                     {/* {name+" "+ gstNo+" "+  adminEmail+" "+  adminPassword+" "+  adminConfirmPassword} */}
                     {loading?<label htmlFor="loading">Loading...</label>:
-                    <button style={{alignSelf:'center',width:'10vw'}} onClick={handleorgsubmit}>Login</button>}
+                    <button style={{alignSelf:'center',width:'10vw'}} onClick={handleorgsubmit}>SignUp</button>}
+                    {loading==true && orgerror==""?<><label style={{alignSelf:'center'}} htmlFor="otporg" >Verify OTP:</label>
+                    <input style={{alignSelf:'center'}} onChange={(e)=>{setOrgOTP(e.target.value)}} id="otporg" name="otporg"/><br/>
+                    <button style={{alignSelf:'center',width:'10vw'}} onClick={handleotpOrg}>Submit</button></>:""}
                 <br/>
             </div>
       </div>

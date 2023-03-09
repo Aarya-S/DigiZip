@@ -20,6 +20,7 @@ export default function Login() {
   // if(error=="" && (getSession('user')!=null || getSession('orgdetail')!=null || getSession('userdetail')!=null)){
   //   navigate.push("/");
   // }
+
   // functions to handle the input fields
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ export default function Login() {
     const auth = getAuth(app);
     if(auth.currentUser!=null){
       removeSession('user');
+      removeSession('userdetail');
       auth.signOut();
     }
     // console.log(email+" "+password)
@@ -39,23 +41,27 @@ export default function Login() {
           if(res.status==200){
             createsession(res.data,'userdetail').then((res)=>{
               navigate.push("/");
+              setLoading(false);
             }).catch((err)=>{
               setError("Error Occured")
             });
           }
           else{
             setError(res.data);
+            // setLoading(false);
           }
       }).catch((err)=>{
           setError(err.response.data);
           alert(err.response.data)
+          // setLoading(false);
       })
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
+      setLoading(false);
     })
-    setLoading(false);
+   
   }
 
   const handleOrgSubmit = async (e: { preventDefault: () => void; }) => {
@@ -64,6 +70,7 @@ export default function Login() {
       const auth = getAuth(app);
       if(auth.currentUser!=null){
         removeSession('user');
+        removeSession('orgdetail');
         auth.signOut();
       }
       await signInWithEmailAndPassword(auth, orgemail, orgpassword).then((userCredential) => {
@@ -73,6 +80,7 @@ export default function Login() {
             if(res.status==200){
               createsession(res.data,'orgdetail').then((res)=>{
                 navigate.push("/");
+                setLoading(false);
               }).catch((err)=>{
                 setError("Error Occured")
               });
@@ -87,8 +95,8 @@ export default function Login() {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
+        setLoading(false);
       })
-      setLoading(false);
   }
 
     return (
