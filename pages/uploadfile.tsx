@@ -85,7 +85,7 @@ export default function uploadfile() {
 
             {password==""?<button onClick={()=>setPassword("somethingdefault")}>Select Default</button>:""}
             <br></br>
-            Enter Alphanumeric code of Organization to which you want to share the file with
+            Enter Alphanumeric code of Organization to which you want to share the file with : - 
             <input type="text" placeholder="Enter code" onChange={(e)=>setOrgCode(e.target.value)}></input>
             <br></br>
             Select the Access Date 
@@ -96,13 +96,7 @@ export default function uploadfile() {
            
           </div>
 
-          <div>
-            YAHA CUSTOM PRESETS DAALDE AARYA
-          </div>
-
-          <div>
-            YAHA STATIC PRESETS DAALDE AARYA
-          </div>
+          
           <br></br>
         {err}
         </>

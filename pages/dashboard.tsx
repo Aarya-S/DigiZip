@@ -5,7 +5,7 @@ import { getSession ,createsession} from "../utils/sessionhandling";
 import styles from '../styles/dashboard.module.css';
 
 export default function Dashboard() {
-    const session = getSession('userdetail');
+    const session = getSession('userdetail')
     const[name,setName] = useState(session!=null?session.email:'Name not found')
     // const[dob,setDob] = useState(session!=null?session.dob:'DOB not found')
     const[verifiy,setVerifiy] = useState(session!=null?session.verified:'Verification not found')

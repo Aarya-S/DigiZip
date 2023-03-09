@@ -17,9 +17,9 @@ export default function Login() {
   const [orgpassword, setOrgPassword] = useState("");
   const [orgerror, setOrgerror] = useState("");
   const navigate = useRouter();
-  if(error=="" && (getSession('user')!=null || getSession('orgdetail')!=null || getSession('userdetail')!=null)){
-    navigate.push("/");
-  }
+  // if(error=="" && (getSession('user')!=null || getSession('orgdetail')!=null || getSession('userdetail')!=null)){
+  //   navigate.push("/");
+  // }
   // functions to handle the input fields
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -37,7 +37,12 @@ export default function Login() {
       axios.get('https://digizip.onrender.com/auth/getuser?email='+userCredential.user.email).then((res)=>{
           // console.log(res);
           if(res.status==200){
-          createsession(res.data,'userdetail');}
+            createsession(res.data,'userdetail').then((res)=>{
+              navigate.push("/");
+            }).catch((err)=>{
+              setError("Error Occured")
+            });
+          }
           else{
             setError(res.data);
           }
@@ -45,17 +50,12 @@ export default function Login() {
           setError(err.response.data);
           alert(err.response.data)
       })
-      if(getSession('userdetail')!=null){
-        navigate.push("/")
-      }
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      setError(errorCode+" :- "+errorMessage);
-    }).finally(()=>{
-      setLoading(false);
-    });
-    // setLoading(false);
+      setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
+    })
+    setLoading(false);
   }
 
   const handleOrgSubmit = async (e: { preventDefault: () => void; }) => {
@@ -69,21 +69,25 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, orgemail, orgpassword).then((userCredential) => {
         // Signed in
         createsession(userCredential.user,'user');
-        axios.get('https://digizip.onrender.com/org/get?email='+userCredential.user.email).then((res)=>{
-            console.log(res.data);
-            createsession(res.data,'orgdetail');  
+        axios.get('https://digizip.onrender.com/org/get?email='+userCredential.user.email).then((res)=>{  
+            if(res.status==200){
+              createsession(res.data,'orgdetail').then((res)=>{
+                navigate.push("/");
+              }).catch((err)=>{
+                setError("Error Occured")
+              });
+            }
+            else{
+              setOrgerror(res.data);
+            }
         }).catch((err)=>{ 
-            // console.log(err);
             setOrgerror(err.response.data);
         })
-        navigate.push("/")
       }).catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setOrgerror(errorCode+" :- "+errorMessage);
-      }).finally(()=>{
-        setLoading(false);
-      });
+        setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
+      })
       setLoading(false);
   }
 

@@ -1,7 +1,15 @@
 import CryptoJS from 'crypto-js';
 function createsession(User,name){
-    const ct = CryptoJS.AES.encrypt(JSON.stringify(User), process.env.NEXT_PUBLIC_SECRETKEY).toString();
-    sessionStorage.setItem(name, ct);
+    let promise = new Promise((resolve, reject) => {
+        const ct = CryptoJS.AES.encrypt(JSON.stringify(User), process.env.NEXT_PUBLIC_SECRETKEY).toString();
+        sessionStorage.setItem(name, ct);
+        if(getSession(name)!=null){
+            resolve(true);}
+        else{
+            resolve(false);
+        }
+    });
+    return promise;
 }
 
 function getSession(name) {
