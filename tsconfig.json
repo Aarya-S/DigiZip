@@ -16,6 +16,6 @@
     "incremental": true,
     "noImplicitThis": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/Metadataextracter.js", "components/CompressFile/CompressFile.js", "utils/EncryptFile.ts", "components/PdfViewer/PdfViewer.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/Metadataextracter.js", "components/CompressFile/CompressFile.js", "utils/EncryptFile.js", "components/PdfViewer/PdfViewer.js"],
   "exclude": ["node_modules"]
 }

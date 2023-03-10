@@ -2,23 +2,29 @@ import { ChangeEvent, useState } from 'react'
 import extractMetadata from "../utils/ExtractMetadata";
 import {compressArrayBuffer, decompressArrayBuffer} from "../utils/CompressFile";
 import { encryptArrayBuffer,decryptArrayBuffer } from '../utils/EncryptFile';
-import {storeFiles} from '../utils/Web3Config&Functions';
+import {retrieveFiles, storeFiles} from '../utils/Web3Config&Functions';
 import { handleDownload } from '../utils/HandleDownload';
 import PdfViewer from '../components/PdfViewer/PdfViewer';
+import axios from 'axios';
+import { getSession } from '../utils/sessionhandling';
 
 export default function uploadfile() {
-
+// State variables
     const[file,setFile] = useState(new ArrayBuffer(0)); 
-    const[outFile,setOutFile] = useState(new String);
     const[metadata,setMetadata] = useState(Object);
-    const[password,setPassword] = useState("");
-    const[orgcode,setOrgCode] = useState("");
-    const[date,setDate] = useState("");
-    const[downloadAccess,setDownloadAccess] = useState("");
-    const[readAccess,setReadAccess] = useState(false);
-
+    const[cid,setCid] = useState("");
+    const[filehashst,setFilehash] = useState("");
 
     const[err,setErr] = useState("");
+    const[loading,setLoading] = useState(false);
+
+    const client = axios.create({
+      // baseURL: "https://digizip.onrender.com" 
+      baseURL: "http://localhost:5000"
+    });
+    const getUser = getSession('userdetail');
+
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -36,69 +42,67 @@ export default function uploadfile() {
         }
     }
     const upload = async () => {
-        console.log(downloadAccess);
-        if(password==""){
-          setErr(err +"\n Please enter a password");
+        if(file!=null && file.byteLength>0 && metadata!=null){
+          setLoading(true);
+          const compressedFile = compressArrayBuffer(file);
+          setFile(compressedFile);
+          try{
+            const encryptedFile = encryptArrayBuffer(compressedFile);
+            const filehash = metadata.hash.then((res:String)=>{
+              storeFiles(encryptedFile,metadata.name.split(".")[0]).then((cid)=>{
+                setErr("")
+                client.post("/file/add",{
+                  email : getUser.email,
+                  file_CID : cid,
+                  FileHash : res,
+                  password : 'sussybukka',
+                  metadata : {
+                      title : metadata.name.split(".")[0],
+                      size : metadata.size,
+                      creationDate : metadata.CreationDate,
+                      lastModifiedDate : metadata.lastModified
+                  },
+                  access :[]
+              }).then((res)=>{
+                alert(res.data+" Successfully ");
+                setLoading(false);
+              }).catch((err)=>{
+                setErr(err.response.data);
+                setLoading(false);
+              });
+              
+            });})
+            
+          }catch(err){
+            console.log(err);
+          }
         }
-        if(orgcode==""){
-          setErr(err +"\nPlease enter a organization code");
-        }
-        if(file!=null && file.byteLength>0 && password!="" && orgcode!=""){
-          // const compressedFile = compressArrayBuffer(file);
-          // setFile(compressedFile);
-          // try{
-          // const encryptedFile = encryptArrayBuffer(compressedFile, "sussysus");
-          // setOutFile(encryptedFile);
-          
-          // // console.log(decompressedFile);
-          // }catch(err){
-          //   console.log(err);
-          // }
-          console.log("Uploading file");
-        // console.log(compressedFile);
-        }
-        
-    }
-
-    const download = async () => {
         
     }
 
     
 
+    
+
     return (
         <>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <div>
-            <input type="file" onChange={(e)=>handleChange(e)} accept="application/pdf"></input>
-            <button onClick={upload} hidden={file.byteLength==0}>Upload</button>
-            <br></br>
-            <br></br>
-            <input 
-              type="password" 
-              placeholder="Enter password for File Encryption" 
-              value={password}
-              onChange={(e)=>{setPassword(e.target.value)}} ></input>
-
-            {password==""?<button onClick={()=>setPassword("somethingdefault")}>Select Default</button>:""}
-            <br></br>
-            Enter Alphanumeric code of Organization to which you want to share the file with : - 
-            <input type="text" placeholder="Enter code" onChange={(e)=>setOrgCode(e.target.value)}></input>
-            <br></br>
-            Select the Access Date 
-            <input type="date" placeholder="Enter code" onChange={(e)=>setDate(e.target.value)}></input>
-            <br></br>
           
-            {/* yaha pe radio input vagara daalde based on value wo downloadAccess & readAccess ka state Set or non Set karde */}
+          <div>
+            <br></br>
+            <br></br>
+            <br></br>
+            {err}
+            <br></br> 
+            <input type="file" onChange={(e)=>handleChange(e)} accept="application/pdf"></input>
+            <button onClick={upload} hidden={file.byteLength==0 && !loading}>Upload</button>
+            {loading?<div>Uploading...</div>:""}
+
+            <br></br>
+            <br></br>
            
           </div>
 
           
-          <br></br>
-        {err}
         </>
     )
 }

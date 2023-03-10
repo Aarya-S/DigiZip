@@ -12,7 +12,7 @@ const Homebody = () => {
     const Userlinks = () => {
       return(
         <>
-        <h1>Welcome {session.email}</h1>
+        <h1>Welcome {session.email.split('@')[0]}</h1>
         <div className={styles.home__buttons}>
           <Link className={styles.view__files} href="/viewfiles">
             <FontAwesomeIcon icon={faEye} style={{marginRight: 20}}/> View Files
