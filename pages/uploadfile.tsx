@@ -19,8 +19,8 @@ export default function uploadfile() {
     const[loading,setLoading] = useState(false);
 
     const client = axios.create({
-      // baseURL: "https://digizip.onrender.com" 
-      baseURL: "http://localhost:5000"
+      baseURL: "https://digizip.onrender.com" 
+      // baseURL: "http://localhost:5000"
     });
     const getUser = getSession('userdetail');
 

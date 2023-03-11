@@ -29,7 +29,8 @@ const PdfViewer = (filedata) => {
     //   }
 
     useEffect(() => {
-        const loadingTask = PDFJS.getDocument({data : file.filedata});
+        console.log("file",file.file);
+        const loadingTask = PDFJS.getDocument({data : new Int8Array( file.file)});
         loadingTask.promise.then(
             (pdf) => {
               renderedPdf = pdf;

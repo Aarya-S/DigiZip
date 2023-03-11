@@ -3,7 +3,9 @@ import { Web3Storage } from 'web3.storage';
 import { decryptArrayBuffer } from './EncryptFile';
 import { decompressArrayBuffer } from './CompressFile';
 import { handleDownload } from './HandleDownload';
+
 import axios from 'axios';
+import PdfViewer from '../components/PdfViewer/PdfViewer';
 
 function getAccessToken () {
   // If you're just testing, you can paste in a token
@@ -42,6 +44,8 @@ export async function retrieveFiles (cid: string,name : string) {
   const path = "https://"+cid+".ipfs.w3s.link/"+name;
   await axios.get(path).then((response) => {
     handleDownload(decryptArrayBuffer(response.data),name);
+  }).catch((error) => {
+    console.log(error);
   });
   // request succeeded! do something with the response object here...
 }

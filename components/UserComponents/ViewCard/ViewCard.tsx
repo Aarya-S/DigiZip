@@ -7,16 +7,23 @@ import { useState, useEffect } from "react";
 import React from "react";
 
 import { retrieveFiles } from "../../../utils/Web3Config&Functions";
+import { useRouter } from "next/router";
 
 // user structure
 type UserType = {
     id: number, //untouchable
-    name: string, //untouchable
-    accessType: "Read only" | "Download",
-    endDate: string,
-    cid: string, //hidden data
-    orgHash: string //hidden data
+    // name: string, //untouchable
+    read: boolean,
+    download : boolean,
+    time: string,
+    status: String //hidden data
+    org_hash: string //hidden data
 };
+
+
+// State variables
+
+
 
 // untouchable code below ⬇️⬇️⬇️⬇️
 // toggle footer visibility on click of view people button
@@ -53,18 +60,19 @@ var toggleFooter = function() {
 
 
 // Handlers
-const HandleView = () => {
-    retrieveFiles("bafybeidjai2vj5vqjkba6s74bqyfbyevlvjtaj7nwgpxtrh4a643adz7ny");
-}
 
 
 
 
 
 
-export default function ViewCardUser() {
-    
 
+export default function ViewCardUser(prop: any) {
+    const [files, setFiles] = useState(prop.prop);
+    const navigate = useRouter()
+    const HandleView = () => {
+        navigate.push("/previewFile/"+files.CID+"."+files.metadata.title)
+    }
     useEffect(() => {
         handleClick(); //isko haath mat lagao
     });
@@ -73,36 +81,14 @@ export default function ViewCardUser() {
         { name: "Name", uid: "name" },
         { name: "Access Type", uid: "access_type" },
         { name: "End Date", uid: "end_date" },
-        { name: "Remove Access", uid: "remove_access" },
+        { name: "Status", uid: "status_byOrg" },
+        { name: "Remove Access", uid: "remove_access" }
     ];
 
-    const users: UserType[] = [
-        {
-            id: 1,
-            name: "Aarya Shelar",
-            accessType: "Download",
-            endDate: "12/12/2021",
-            cid: "xyz",
-            orgHash: "%$@$hash1"
-        },
-        {
-            id: 2,
-            name: "Aarya Shelar",
-            accessType: "Read only",
-            endDate: "12/12/2021",
-            cid: "abc",
-            orgHash: "%$@$hash2"
-        },
-        {
-            id: 3,
-            name: "Aarya Shelar",
-            accessType: "Download",
-            endDate: "12/12/2021",
-            cid: "xyz",
-            orgHash: "%$@$hash3"
-        
-        }
-    ];
+    for (var i = 0; i < files.access.length; i++) {
+        files.access[i].id = i;
+    }
+    const users: UserType[] = files.access;
 
 
     const renderCell = (user: UserType, columnKey: React.Key) => {
@@ -110,15 +96,19 @@ export default function ViewCardUser() {
         switch (columnKey) {
             case "name":
                 return (
-                    <>{user.name}</>
+                    <>{user.org_hash}</>
                 );
             case "access_type":
                 return (
-                    <>{user.accessType}</>
+                    <>{user.download?"Download":user.read?"Read only":"No access Given"}</>
                 );
             case "end_date":
                 return (
-                    <>{user.endDate}</>
+                    <>{user.time}</>
+                );
+            case "status_byOrg":
+                return (
+                    <>{user.status}</>
                 );
             case "remove_access":
                 return (
@@ -126,7 +116,7 @@ export default function ViewCardUser() {
                     <div style={{ display: "flex", flexDirection: "row", alignItems:"center", justifyContent: "flex-start", color: "red", fontSize: "1.2rem"}}>
                         <button 
                         style={{background: "transparent", border: "none", outline: "none", cursor: "pointer"}}
-                        onClick={() => console.log(user.orgHash + user.cid)} >
+                        onClick={() => console.log(user.org_hash)} >
                             <div>   
                             <FontAwesomeIcon icon={faMinusCircle} /> <text style={{fontSize: "0.9rem"}}>revoke </text>
                             </div>
@@ -144,8 +134,8 @@ export default function ViewCardUser() {
         <div className={styles.card}>
             <div className={styles.cardHeader}>
             <div className={styles.docInfoDiv}>
-                <div className={styles.docName}>Aadhaar Card</div>
-                <div className={styles.docSize}>Size: 1.2 MB</div>
+                <div className={styles.docName}>{files.metadata.title}</div>
+                <div className={styles.docSize}>{files.metadata.size/1000} MB</div>
             </div>
             <div className={styles.actionButtonsDiv}>
                 {/* View file button */}
@@ -180,7 +170,7 @@ export default function ViewCardUser() {
         </div>
         <div className={styles.cardFooter}>
             
-            <Table
+            {files.access.length!=0?<Table
             headerLined shadow={false} fixed={true}
             aria-label="User table"
             css={{
@@ -203,7 +193,7 @@ export default function ViewCardUser() {
                     </Table.Row>
                     )}
                 </Table.Body>
-            </Table>
+            </Table>:"No one has access to this file"}
         </div>
         </div>
 

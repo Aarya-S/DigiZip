@@ -1,8 +1,40 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import ViewCardUser from "../components/UserComponents/ViewCard/ViewCard";
 import styles from "../styles/UserHome.module.css";
+import { createsession, getSession } from "../utils/sessionhandling";
 
 
 function UserHome() {
+    const[files,setFiles] = useState([]);
+    const[error,setError] = useState("");
+
+    const Usersession = getSession('userdetail');
+    const client = axios.create({
+        baseURL: "https://digizip.onrender.com"
+    })
+    
+    useEffect(() => {
+      // client.get("/file/get?email="+Usersession.email).then((res)=>{
+      //   setFiles(res.data);
+      // })
+        if(getSession('usercontent')!=null){
+            setFiles(getSession('usercontent'));
+        }else{
+            client.get("/file/get?email="+Usersession.email).then((res)=>{
+              createsession(res.data,'usercontent')
+              setFiles(res.data);
+            })
+        }
+      return () => {
+        {files.map((file)=>{
+          return <ViewCardUser prop={file}/>
+      })}
+      }
+    }, [])
+    
+    console.log(files)
+    
     return (
         <>
         <div className={styles.UserHomeBody}>
@@ -11,10 +43,12 @@ function UserHome() {
 
         <div className={styles.cardsDiv}>
         <h3>Your Documents</h3>
-        <ViewCardUser />
-        <ViewCardUser />
-        <ViewCardUser />
-
+        {error.length>0 && <p>{error}</p>}
+        {files.length!=0?
+        files.map((file)=>{
+          return <ViewCardUser prop={file}/>
+        }):<p>No files found</p>
+      }
         </div>
 
         </div>

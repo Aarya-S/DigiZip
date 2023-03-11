@@ -11,6 +11,7 @@ const Navbar = () => {
     removeSession('user');
     removeSession('orgdetail');
     removeSession('userdetail');
+    removeSession('usercontent');
     navigate.push("/");
   }
   return (
