@@ -83,7 +83,8 @@
   }
 
   .hr1{
-    width: 53%;
-    align-self: center;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
     color: #ffffff;
   }

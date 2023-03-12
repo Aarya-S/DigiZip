@@ -61,6 +61,7 @@
     padding-top: 30px;
     padding-bottom: 20px;
     box-sizing: border-box;
+    color: #e5e5e5;
     width: 20vw;
     height: 95vh;
     background: rgba(90, 77, 77, 0.15);
@@ -90,6 +91,7 @@
 
   .pp {
     align-self: center;
+    color: #e5e5e5;
     padding-top: 5px;
     font-family: 'Lora', serif ,Arial, Helvetica, sans-serif;
     font-size: 35px;

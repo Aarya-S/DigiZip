@@ -16,7 +16,19 @@ background: linear-gradient(94deg, rgba(115,108,108,1) 0%, rgba(41,39,39,1) 60%)
   justify-content: center;
   font-family: 'Poppins', sans-serif;
   font-size: 28px;
+  color: aliceblue;
 }
+
+.miniheadi{
+    text-align: left;
+    justify-content: left;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 22px;
+    color: aliceblue;
+    margin-left: 3%;
+    font-weight: 600;
+}
+
 
 #Collapse{
   background-color: blueviolet;

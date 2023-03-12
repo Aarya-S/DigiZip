@@ -22,7 +22,7 @@ export default function Home() {
        <text> Our secure platform ensures that your documents are delivered safely and privately.</text>
        <br /><br /><br />
       <div>
-        <button><Link style={{color:'black'}} href={'/register'}>Get Started </Link><span className="material-symbols-outlined">mood</span>
+        <button><Link style={{color:'black', textDecorationLine:'none'}} href={'/register'}>Get Started </Link><span className="material-symbols-outlined">mood</span>
         </button>
       </div>
     </div>

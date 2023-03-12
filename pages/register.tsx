@@ -187,7 +187,7 @@ export default function Register() {
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="cnfrmpass" >Confirm Password</label>
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setIsPasswordValid(e.target.value)}} id="cnfrmpass" name="pass"/><br/>
-                <label style={{alignSelf:'center'}} htmlFor="aadhar" >Aadhar Number:</label>
+                <label style={{alignSelf:'center'}} htmlFor="aadhar" >Aadhaar Number</label>
                 <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setAdhaar(e.target.value)}} id="aadhar" name="loginId"/><br/>
                 
                 {loading?<label htmlFor="loading">Loading...</label>:
@@ -207,11 +207,11 @@ export default function Register() {
                 Are You an Organization <br />
                 </div>
                 <br />
-                    {orgerror?<label htmlFor="error">{orgerror}</label>:""}         
+                             
                     <label style={{alignSelf:'center'}} htmlFor="orgname">Organization Name</label>
                     <input style={{alignSelf:'center'}} type="text" onChange={(e)=>{setName(e.target.value)}} id="orgname" name="orgname"/><br/>
 
-                    <label style={{alignSelf:'center'}} htmlFor="gstno">GST Number</label>
+                    <label style={{alignSelf:'center'}} htmlFor="gstno">Registration Number</label>
                     <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setGstNo(e.target.value)}} id="gstno" name="gstno"/><br/>
 
                     <label style={{alignSelf:'center'}} htmlFor="admin" >Enter Admin Email ID</label>
