@@ -76,6 +76,7 @@
     justify-content: center;
     user-select: none;
     font-weight: bolder;
+    margin-bottom: 25px;
   }
   
   .card:hover {
