@@ -5,6 +5,7 @@ import { app } from '../utils/firebaseconfig';
 import { createsession,getSession,removeSession} from '../utils/sessionhandling';
 import axios from 'axios';
 import styles from "../styles/Login.module.css"
+import Link from 'next/link';
 
 export default function Login() {
     // State variables
@@ -16,6 +17,8 @@ export default function Login() {
   const [orgemail, setOrgEmail] = useState("");
   const [orgpassword, setOrgPassword] = useState("");
   const [orgerror, setOrgerror] = useState("");
+  // const [orgloading, orgsetLoading] = useState(false);
+
   const navigate = useRouter();
   // if(error=="" && (getSession('user')!=null || getSession('orgdetail')!=null || getSession('userdetail')!=null)){
   //   navigate.push("/");
@@ -61,6 +64,7 @@ export default function Login() {
       setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
       setLoading(false);
     })
+
    
   }
 
@@ -80,7 +84,6 @@ export default function Login() {
             if(res.status==200){
               createsession(res.data,'orgdetail').then((res)=>{
                 navigate.push("/");
-                setLoading(false);
               }).catch((err)=>{
                 setError("Error Occured")
               });
@@ -95,7 +98,6 @@ export default function Login() {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
-        setLoading(false);
       })
   }
 
@@ -108,14 +110,15 @@ export default function Login() {
               <div className={styles.pp}>
                 For User <br />
                 </div>
-                <br />
-                {error?<label htmlFor="error">{error}</label>:""}         
+                <br />      
                 <label style={{alignSelf:'center'}} htmlFor="loginId" >Email ID:</label>
                 <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="pass" >Password:</label>
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/><br />
                 {loading?<label htmlFor="loading" style={{alignSelf:'center'}}>Loading...</label>:
                 <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>Login</button>}
+                <Link href="/forgetpwd" style={{color: "blanchedalmond",alignSelf:"center",marginTop:"20px"}}>Forget Password</Link>
+                {error?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{error}</label>:""} 
                 
             <br/>
             {/* <button onClick={handleGSubmit}>Google</button> */}
@@ -131,13 +134,15 @@ export default function Login() {
                 For Organizations <br />
                 </div>
                 <br />
-                {orgerror?<label htmlFor="error">{orgerror}</label>:""}         
+                        
                 <label style={{alignSelf:'center'}} htmlFor="orgloginId">Admin ID:</label>
                 <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setOrgEmail(e.target.value)}} id="orgloginId" name="orgloginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="orgpass">Password:</label>
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setOrgPassword(e.target.value)}} id="orgpass" name="orgpass"/><br/><br />
                 {loading?<label htmlFor="loading">Loading...</label>:
                 <button style={{alignSelf:'center',width:'10vw'}} onClick={handleOrgSubmit}>Login</button>}
+                <Link href="/forgetpwd" style={{color: "blanchedalmond",alignSelf:"center",marginTop:"20px"}}>Forget Password</Link>
+                {orgerror?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{orgerror}</label>:""} 
             <br/>
             {/* <button onClick={handleGSubmit}>Google</button> */}
             {/* <button onClick={(e)=>{navigate.push('/register')}}>Signup</button>

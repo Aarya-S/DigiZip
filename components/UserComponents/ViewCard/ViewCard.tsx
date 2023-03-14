@@ -68,10 +68,10 @@ var toggleFooter = function() {
 
 
 export default function ViewCardUser(prop: any) {
-    const [files, setFiles] = useState(prop.prop);
+    const [files_prop, setFiles] = useState(prop.prop);
     const navigate = useRouter()
     const HandleView = () => {
-        navigate.push("/previewFile/"+files.CID+"."+files.metadata.title)
+        navigate.push("/previewFile/"+files_prop.CID+"."+files_prop.metadata.title)
     }
     useEffect(() => {
         handleClick(); //isko haath mat lagao
@@ -85,10 +85,10 @@ export default function ViewCardUser(prop: any) {
         { name: "Remove Access", uid: "remove_access" }
     ];
 
-    for (var i = 0; i < files.access.length; i++) {
-        files.access[i].id = i;
+    for (var i = 0; i < files_prop.access.length; i++) {
+        files_prop.access[i].id = i;
     }
-    const users: UserType[] = files.access;
+    const users: UserType[] = files_prop.access;
 
 
     const renderCell = (user: UserType, columnKey: React.Key) => {
@@ -128,14 +128,29 @@ export default function ViewCardUser(prop: any) {
         }
     }
 
+    const editfile = () => {
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.accept = ".pdf";
+        input.onchange = _ => {
+            // you can use this method to get file and perform respective operations
+                    let input_files =   Array.from(input.files as FileList);
+                    console.log(input_files[0]);
+                    confirm("Are your Sure to Update the existing File").valueOf()
+                };
+        input.click();
+
+  
+    }
+
     
     return(
     <>
         <div className={styles.card}>
             <div className={styles.cardHeader}>
             <div className={styles.docInfoDiv}>
-                <div className={styles.docName}>{files.metadata.title}</div>
-                <div className={styles.docSize}>{files.metadata.size/1000} MB</div>
+                <div className={styles.docName}>{files_prop.metadata.title}</div>
+                <div className={styles.docSize}>{files_prop.metadata.size/1000} MB</div>
             </div>
             <div className={styles.actionButtonsDiv}>
                 {/* View file button */}
@@ -147,7 +162,7 @@ export default function ViewCardUser(prop: any) {
 
                 {/* Edit file button */}
                 <Tooltip content="Edit file" placement="top" hideArrow color="invert">
-                <button className={styles.actionButton}>
+                <button className={styles.actionButton} onClick={editfile}>
                     <FontAwesomeIcon icon={faFilePen} style={{ color: "black", fontSize: "1.3rem"}} />
                 </button>
                 </Tooltip>
@@ -170,7 +185,7 @@ export default function ViewCardUser(prop: any) {
         </div>
         <div className={styles.cardFooter}>
             
-            {files.access.length!=0?<Table
+            {files_prop.access.length!=0?<Table
             headerLined shadow={false} fixed={true}
             aria-label="User table"
             css={{

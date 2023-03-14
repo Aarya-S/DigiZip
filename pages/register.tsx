@@ -179,8 +179,7 @@ export default function Register() {
               <div className={styles.pp}>
                 Are You an <br /> User <br />
                 </div>
-                <br />
-                {error?<label htmlFor="error">{error}</label>:""}         
+                <br />    
                 <label style={{alignSelf:'center'}} htmlFor="loginId" >Enter Email ID/Set UserName</label>
                 <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="pass" >Set Password</label>
@@ -189,12 +188,14 @@ export default function Register() {
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setIsPasswordValid(e.target.value)}} id="cnfrmpass" name="pass"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="aadhar" >Aadhaar Number</label>
                 <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setAdhaar(e.target.value)}} id="aadhar" name="loginId"/><br/>
-                
+
+                {error?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{error}</label>:""}     
                 {loading?<label htmlFor="loading">Loading...</label>:
                     <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>SignUp</button>}
                 {loading==true && error==""?<><label style={{alignSelf:'center'}} htmlFor="otp" >Verify OTP:</label>
                 <input style={{alignSelf:'center'}} onChange={(e)=>{setOTP(e.target.value)}} id="otp" name="otp"/><br/>
                 <button style={{alignSelf:'center',width:'10vw'}} onClick={handleotpUser}>Submit</button></>:""}
+                {error?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{error}</label>:""}     
 
             <br/>
 
