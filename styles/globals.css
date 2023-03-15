@@ -16,7 +16,8 @@
     background: black;
     font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
-    max-width: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
     overflow-x: hidden;
   }
 }

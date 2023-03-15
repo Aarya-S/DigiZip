@@ -1,0 +1,35 @@
+.OrgHomeWrapper {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.actionButtonsDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 3rem;
+    margin-right: 0.5rem;
+}
+
+.actionButton {
+    height: 60%;
+    width: 35%;
+    border: 2px solid white;
+    padding: 8% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.actionButton:hover {
+    background-color: white;
+    color: black;
+}
