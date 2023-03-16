@@ -1,0 +1,79 @@
+.card {
+    background-color: #ffffff;
+    color: black;
+    padding: 1rem;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 70vw;
+    min-height: 9vh;
+    border-radius: 0.5rem;
+}
+
+.cardHeader {
+    background-color: #ffffff;
+    color: black;
+    padding: 1rem;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 100%;
+    min-height: 15vh;
+}
+
+.cardFooter {
+    /* height: 0; */
+    overflow: hidden;
+    transition: height 0.35s ease;
+}
+
+.groupDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.groupDetails > h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+}
+
+.groupDetails > text {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+}
+
+.groupActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-right: 0.5rem;
+}
+
+.actionButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.4rem;
+    border: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    background-color: transparent;
+    cursor: pointer;
+}

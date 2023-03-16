@@ -6,7 +6,7 @@ import {retrieveFiles, storeFiles} from '../utils/Web3Config&Functions';
 import { handleDownload } from '../utils/HandleDownload';
 import PdfViewer from '../components/PdfViewer/PdfViewer';
 import axios from 'axios';
-import { getSession } from '../utils/sessionhandling';
+import { getSession, removeSession } from '../utils/sessionhandling';
 
 export default function uploadfile() {
 // State variables
@@ -44,6 +44,7 @@ export default function uploadfile() {
     const upload = async () => {
         if(file!=null && file.byteLength>0 && metadata!=null){
           setLoading(true);
+          setErr("")
           const compressedFile = compressArrayBuffer(file);
           setFile(compressedFile);
           try{
@@ -65,9 +66,11 @@ export default function uploadfile() {
                   access :[]
               }).then((res)=>{
                 alert(res.data+" Successfully ");
+                removeSession('usercontent');
                 setLoading(false);
               }).catch((err)=>{
-                setErr(err.response.data);
+                setErr("something went wrong");
+                console.log(err);
                 setLoading(false);
               });
               

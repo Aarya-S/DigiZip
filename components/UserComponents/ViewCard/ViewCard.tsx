@@ -6,8 +6,13 @@ import { Modal, Table, Text, Tooltip, Button } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import React from "react";
 
-import { retrieveFiles } from "../../../utils/Web3Config&Functions";
+import { retrieveFiles, storeFiles } from "../../../utils/Web3Config&Functions";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { getSession, removeSession } from "../../../utils/sessionhandling";
+import CryptoJS from "crypto-js";
+import { compressArrayBuffer } from "../../../utils/CompressFile";
+import { encryptArrayBuffer } from "../../../utils/EncryptFile";
 
 // user structure
 type UserType = {
@@ -76,6 +81,7 @@ export default function ViewCardUser(prop: any) {
     useEffect(() => {
         handleClick(); //isko haath mat lagao
     });
+    const session = getSession('userdetail');
 
     const columns = [
         { name: "Name", uid: "name" },
@@ -89,7 +95,10 @@ export default function ViewCardUser(prop: any) {
         files_prop.access[i].id = i;
     }
     const users: UserType[] = files_prop.access;
-
+    const client = axios.create({
+        baseURL: "https://digizip.onrender.com" 
+        // baseURL: "http://localhost:5000"
+      });
 
     const renderCell = (user: UserType, columnKey: React.Key) => {
         const cellValue = user[columnKey as keyof UserType];
@@ -128,19 +137,60 @@ export default function ViewCardUser(prop: any) {
         }
     }
 
-    const editfile = () => {
+    const editfile = async () => {
         let input = document.createElement('input');
         input.type = 'file';
         input.accept = ".pdf";
         input.onchange = _ => {
             // you can use this method to get file and perform respective operations
                     let input_files =   Array.from(input.files as FileList);
+                    const filehash = input_files[0].text().then(text => {
+                        const hashcontent =  CryptoJS.SHA256(text).toString()
+                    
                     console.log(input_files[0]);
-                    confirm("Are your Sure to Update the existing File").valueOf()
+                    const val = confirm("Using this, you can replace your file with latest version and only the metadata will be changed.\n Although reverification is required.\n Do you want to proceed?").valueOf()
+                    if(val && input_files[0].size < 100000000){
+                        input_files[0].arrayBuffer().then(buffer => {
+                            const cid = storeFiles(encryptArrayBuffer(compressArrayBuffer(buffer)),files_prop.metadata.title).then(cid => {
+                                alert("Editing file please wait... ")
+                                client.post("/file/edit",{
+                                        email : session.email,
+                                        cid_old : files_prop.CID,
+                                        cid_new : cid,
+                                        FileHash : hashcontent,
+                                        size : input_files[0].size
+                                    }).then(res => {
+                                        alert("File Uploaded Successfully")
+                                        removeSession("usercontent")
+                                        window.location.reload();
+                                    }).catch(err => {
+                                        alert("Error in Uploading File"+err.response.data)
+                                    })
+                            }).catch(err => {
+                                alert("Error in Uploading File to IPFS")
+                            })
+                        }).catch(err => {
+                            alert("Error while reading file")
+                        })
+                    }})
                 };
         input.click();
 
   
+    }
+
+    const deletefile = async () => {
+        const val = confirm("Are you sure you want to delete this file?").valueOf()
+        if(val){
+            alert("Deleting File please wait...")
+            await client.delete("/file/del?email="+session.email+"&cid="+files_prop.CID)
+            .then(res => {
+                alert("File Deleted Successfully")
+                removeSession("usercontent")
+                window.location.reload();
+            }).catch(err => {
+                alert("Error in Deleting File"+err.response.data)
+            })}
     }
 
     
@@ -170,7 +220,7 @@ export default function ViewCardUser(prop: any) {
                 {/* Delete file button */}
                 {/* ispe confirmation modal daalna hai 🤡🤡🤡 */}
                 <Tooltip content="Delete file" placement="top" hideArrow color={"invert"} contentColor={"error"}>
-                <button className={styles.actionButton + " deletePeople"}>
+                <button className={styles.actionButton + " deletePeople"} onClick={deletefile}>
                     <FontAwesomeIcon icon={faTrashCan} style={{ color: "red", fontSize: "1.3rem"}} />
                 </button>
                 </Tooltip>
@@ -208,7 +258,7 @@ export default function ViewCardUser(prop: any) {
                     </Table.Row>
                     )}
                 </Table.Body>
-            </Table>:"No one has access to this file"}
+            </Table>:"No Organization has access to this file"}
         </div>
         </div>
 

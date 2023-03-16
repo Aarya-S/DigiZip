@@ -20,20 +20,21 @@ function UserHome() {
       // })
         if(getSession('usercontent')!=null){
             setFiles(getSession('usercontent'));
+            console.log("session")
         }else{
             client.get("/file/get?email="+Usersession.email).then((res)=>{
               createsession(res.data,'usercontent')
               setFiles(res.data);
             })
         }
-      return () => {
-        {files.map((file)=>{
-          return <ViewCardUser prop={file}/>
-      })}
-      }
+      // return () => {
+      //   {files.map((file)=>{
+      //     return <ViewCardUser prop={file}/>
+      // })}
+      // }
     }, [])
     
-    console.log(files)
+    // console.log(files)
     
     return (
         <>
