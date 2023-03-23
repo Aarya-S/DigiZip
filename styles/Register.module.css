@@ -63,7 +63,7 @@
     box-sizing: border-box;
     color: #e5e5e5;
     width: 20vw;
-    height: 95vh;
+    height: 105vh;
     background: rgba(90, 77, 77, 0.15);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -85,9 +85,6 @@
     transform: scale(1.05);
   }
   
-  .card:active {
-    transform: scale(0.95) rotateZ(1.7deg);
-  }
 
   .pp {
     align-self: center;

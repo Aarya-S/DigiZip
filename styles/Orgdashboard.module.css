@@ -21,7 +21,7 @@
   padding-right: 5vw;
   box-sizing: border-box;
   color: #e5e5e5;
-  width: 35vw;
+  width: 45vw;
   height: auto;
   background: rgba(90, 77, 77, 0.15);
   border: 1px solid white;
@@ -51,13 +51,14 @@
   padding-bottom: 5px;
   font-family: 'Poppins', sans-serif;
 }
+
 .hov{
-    color: rgb(189, 33, 33);
-    align-self: center;
-    padding-top: 20px;
-    text-decoration:none
+  color: rgb(189, 33, 33);
+  align-self: center;
+  padding-top: 20px;
+  text-decoration:none
 }
 .hov:hover{
-    text-decoration: underline;;
-    color:rgb(255, 0, 0);
+  text-decoration: underline;;
+  color:rgb(255, 0, 0);
 }

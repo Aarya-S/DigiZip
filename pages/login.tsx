@@ -117,7 +117,7 @@ export default function Login() {
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/><br />
                 {loading?<label htmlFor="loading" style={{alignSelf:'center'}}>Loading...</label>:
                 <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>Login</button>}
-                <Link href="/forgetpwd" style={{color: "blanchedalmond",alignSelf:"center",marginTop:"20px"}}>Forget Password</Link>
+                <Link href="/forgetpwd" style={{color: "	#d0d0d0",alignSelf:"center",paddingTop:"20px"}}>Forgot Password</Link>
                 {error?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{error}</label>:""} 
                 
             <br/>
@@ -131,19 +131,20 @@ export default function Login() {
             <div className={styles.card}>
             
               <div className={styles.pp}>
+                <br />
                 For Organizations <br />
                 </div>
-                <br />
                         
                 <label style={{alignSelf:'center'}} htmlFor="orgloginId">Admin ID:</label>
                 <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setOrgEmail(e.target.value)}} id="orgloginId" name="orgloginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="orgpass">Password:</label>
                 <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setOrgPassword(e.target.value)}} id="orgpass" name="orgpass"/><br/><br />
-                {loading?<label htmlFor="loading">Loading...</label>:
+                {loading?<label htmlFor="loading" style={{alignSelf:'center'}}>Loading...</label>:
                 <button style={{alignSelf:'center',width:'10vw'}} onClick={handleOrgSubmit}>Login</button>}
-                <Link href="/forgetpwd" style={{color: "blanchedalmond",alignSelf:"center",marginTop:"20px"}}>Forget Password</Link>
+                <Link href="/forgetpwd" style={{color: "	#d0d0d0",alignSelf:"center",paddingTop:"20px", paddingBottom:'50px'}}>Forgot Password</Link>
                 {orgerror?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{orgerror}</label>:""} 
             <br/>
+            <br />
             {/* <button onClick={handleGSubmit}>Google</button> */}
             {/* <button onClick={(e)=>{navigate.push('/register')}}>Signup</button>
             {email+" "+password} */}

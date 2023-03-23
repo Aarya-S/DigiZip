@@ -94,7 +94,10 @@
 
 .welcome{
     padding-top: 30px;
-    font-size: 25px;
-    align-self: center;
+    padding-left: 80px;
+    font-size: 23px;
+    display: flex;
+    align-self: flex-start;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
 }
