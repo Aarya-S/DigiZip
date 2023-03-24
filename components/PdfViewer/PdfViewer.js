@@ -28,7 +28,7 @@ const PdfViewer = (filedata) => {
     //     // ...
     //   }
 
-    useEffect(() => {
+    // useEffect(() => {
         console.log("file",file.file);
         const loadingTask = PDFJS.getDocument({data : new Int8Array( file.file)});
         loadingTask.promise.then(
@@ -39,9 +39,9 @@ const PdfViewer = (filedata) => {
               fetchPageNo(pageNo, renderedPdf, container);
             },
             (error) => {
-              console.log("PDF error");
+              console.log("PDF error "+error);
             })
-      });
+      // });
     const fetchPageNo = (pageNo, pdf, container) => {
         if (pageNo < pdf._pdfInfo.numPages) {
           pageNo += 1;

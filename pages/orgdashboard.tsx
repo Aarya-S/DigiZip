@@ -50,7 +50,7 @@ export default function OrgDashBoard() {
         <label style={{}} htmlFor="gst_no">Organization Registration Number </label>
         <input style={{marginLeft:'15px'}} id="gst_no" name="gst_no" value={orgdetail.gst_no} readOnly/><br/><br/>
 
-        Is Admin Verified = {orgdetail.verified_admin?
+        Admin Verified = {orgdetail.verified_admin?
         <span>Yes</span>:
             <div>
                 New Admin is not verified yet.<br/>
@@ -59,7 +59,7 @@ export default function OrgDashBoard() {
                 <br/>
             </div>
         }<br/>
-        <br />Is Organization Verified = {orgdetail.verified_org?
+        <br />Organization Verified = {orgdetail.verified_org?
         <span>Yes</span>:
         <div>Your Organization is not verified yet.<br/><br />
             <label htmlFor="org">For verification purpose, select type of Organization - </label>

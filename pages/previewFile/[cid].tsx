@@ -24,11 +24,15 @@ export default function previewFile() {
             <br></br>
             <br></br>
             <br></br>
-            hello world
             <br></br>
             {file.byteLength>0?<PdfViewer file={file}/>:<p>loading...</p>}
             <br></br>
-            <button onClick={()=>{retrieveFiles(cid.split('.')[0],cid.split('.')[1])}}>Download</button>
+            {cid.split('.')[2]=="download"?
+            <button onClick={()=>{retrieveFiles(cid.split('.')[0],cid.split('.')[1])}}>Download</button>:""}
+            {
+              cid.split('.')[3]?
+              <p>Description : {cid.split('.')[3]}</p>:""
+            }
             <br></br>
             <br></br>
             <br></br>

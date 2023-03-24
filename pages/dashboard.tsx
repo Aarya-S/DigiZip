@@ -36,7 +36,7 @@ export default function Dashboard() {
                 <h2 style={{textAlign:'center',letterSpacing:'0.5px'}}>Dashboard</h2><br />
             <label style={{}} htmlFor="name">Username/Email </label>
             <input style={{marginLeft:'15px'}} id="name" name="name" value={name} readOnly/><br/><br />
-        Is Account Verified : {verifiy? "Your account is verified":
+         Account Verified : {verifiy? "Your account is verified":
             <div>
                 Verify your account
                 <input type="text" placeholder="Enter OTP" onChange={(e)=>setResetpwd(e.target.value)}></input>

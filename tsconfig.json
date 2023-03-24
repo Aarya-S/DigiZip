@@ -16,6 +16,6 @@
     "incremental": true,
     "noImplicitThis": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/Metadataextracter.js", "components/CompressFile/CompressFile.js", "utils/EncryptFile.js", "components/PdfViewer/PdfViewer.js", "pages/sharefile.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/Metadataextracter.js", "components/CompressFile/CompressFile.js", "utils/EncryptFile.js", "components/PdfViewer/PdfViewer.js", "pages/sharefile.jsx", "components/OrgComponent/OrgViewcard.jsx", "pages/orgreqfile.tsx"],
   "exclude": ["node_modules"]
 }
