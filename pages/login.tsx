@@ -85,7 +85,7 @@ export default function Login() {
               createsession(res.data,'orgdetail').then((res)=>{
                 navigate.push("/");
               }).catch((err)=>{
-                setError("Error Occured")
+                setOrgerror("Error Occured")
               });
             }
             else{
@@ -97,7 +97,7 @@ export default function Login() {
       }).catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setError(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
+        setOrgerror(errorMessage.split(" ")[2].split("/")[1].split(")")[0]);
       })
   }
 

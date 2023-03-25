@@ -39,7 +39,7 @@ export default function OrgViewCard(prop ){
         handleClick();
     });
     const client = axios.create({
-        baseURL: "http://localhost:5000/preset",
+        baseURL: "http://localhost:5000/preset"
     });
     const navigate = useRouter() 
     for (let index = 0; index < getfiles.files.length; index++) {
@@ -80,14 +80,14 @@ export default function OrgViewCard(prop ){
         if(val && foo){
             alert("Deleting Preset please wait...")
             console.log(foo+" hi")
-            // await client.delete("/del?hash="+getfiles.generated_hash_preset)
-            // .then(res => {
-            //     alert("Preset Deleted Successfully")
-            //     removeSession("orgcontent")
-            //     window.location.reload();
-            // }).catch(err => {
-            //     alert("Error in Deleting preset "+err)
-            // })
+            await client.delete("/del?hash="+getfiles.generated_hash_preset+"&des="+foo)
+            .then(res => {
+                alert("Preset Deleted Successfully")
+                removeSession("orgcontent")
+                window.location.reload();
+            }).catch(err => {
+                alert("Error in Deleting preset "+err)
+            })
             
         }
     }

@@ -100,6 +100,21 @@ export default function ViewCardUser(prop: any) {
         // baseURL: "http://localhost:5000"
       });
 
+    const HandleRevokeAccess = async (id: UserType) => {
+        const val = confirm("Are you sure you want to revoke access?").valueOf()
+        if(val){
+            const res = await client.post("/file/revoke",{
+                cid : files_prop.CID,
+                hash : id.org_hash
+            }).then(res => {
+                alert("Access revoked successfully")
+                window.location.reload()
+            }).catch(err => {
+                alert("Access revoke failed")
+            })
+        }
+    }
+
     const renderCell = (user: UserType, columnKey: React.Key) => {
         const cellValue = user[columnKey as keyof UserType];
         switch (columnKey) {
@@ -117,15 +132,14 @@ export default function ViewCardUser(prop: any) {
                 );
             case "status_byOrg":
                 return (
-                    <>{user.status}</>
+                    <>{user.status?"Received":"Rejected"}</>
                 );
             case "remove_access":
                 return (
                     // ek confirmation modal idhar bhi aana chahiye 🤡🤡🤡
-                    <div style={{ display: "flex", flexDirection: "row", alignItems:"center", justifyContent: "flex-start", color: "red", fontSize: "1.2rem"}}>
+                    <div onClick={() => HandleRevokeAccess(user)} style={{ display: "flex", flexDirection: "row", alignItems:"center", justifyContent: "flex-start", color: "red", fontSize: "1.2rem"}}>
                         <button 
-                        style={{background: "transparent", border: "none", outline: "none", cursor: "pointer"}}
-                        onClick={() => console.log(user.org_hash)} >
+                        style={{background: "transparent", border: "none", outline: "none", cursor: "pointer"}} >
                             <div>   
                             <FontAwesomeIcon icon={faMinusCircle} /> <text style={{fontSize: "0.9rem"}}>revoke </text>
                             </div>

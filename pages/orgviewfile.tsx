@@ -8,8 +8,8 @@ export default function orgviewfile(){
     const [error,setError] = useState("");
     const orgdash = getSession('orgdetail');
     const client = axios.create({
-        baseURL: "https://digizip.onrender.com"
-        // baseURL: "http://localhost:5000"
+        // baseURL: "https://digizip.onrender.com"
+        baseURL: "http://localhost:5000"
     })
     useEffect(() => {
         if(getSession('orgcontent')!=null){
@@ -27,14 +27,15 @@ export default function orgviewfile(){
             <br />
             <br />
             <div className={styles.cardsDiv}>
-            {
-                files.map((file)=>{
-                    return <OrgViewCard prop={file}/>
-                })
-            }
-            {
-                files.length==0 ?<p>No files found</p>:<></>
-            }</div>
+                {
+                    files.map((file)=>{
+                        return <OrgViewCard prop={file}/>
+                    })
+                }
+                {
+                    files.length==0 ?<p>No files found</p>:<></>
+                }
+            </div>
             <br />
             <br />
             <br />

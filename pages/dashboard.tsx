@@ -1,20 +1,36 @@
 // import { async } from "@firebase/util";
 import axios from "axios";
 import { useState } from "react";
-import { getSession ,createsession} from "../utils/sessionhandling";
+import { getSession ,createsession, removeSession} from "../utils/sessionhandling";
 import styles from '../styles/dashboard.module.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Link from 'next/link';
+import { deleteUser } from "@firebase/auth";
+import { getAuth } from "firebase/auth";
+import { app } from "../utils/firebaseconfig";
 
 export default function Dashboard() {
     const session = getSession('userdetail')
-    const value = 8;
+    const user = getSession('user')
+    const content = getSession('usercontent')
+    let size = 0;
+    if(content!=null){
+        content.forEach((element:any) => {
+            size += element.metadata.size;
+        });
+    }
+    let value = size/1000000;
+    console.log(value.toPrecision(2));
     const[name,setName] = useState(session!=null?session.email:'Name not found')
     // const[dob,setDob] = useState(session!=null?session.dob:'DOB not found')
     const[verifiy,setVerifiy] = useState(session!=null?session.verified:'Verification not found')
     const[resetpwd,setResetpwd] = useState('');
     const[encrytFpwd,setencrytFpwd] = useState('');
+    const client = axios.create({
+        // baseURL: "https://digizip.onrender.com"
+        baseURL: "http://localhost:5000/auth"
+    })
     const handleonReset = async () => {
         await axios.post('https://digizip.onrender.com/auth/check',{
             email:session.email,
@@ -27,6 +43,32 @@ export default function Dashboard() {
             console.log(err);
             alert(err.response.data);
         })
+    }
+
+    const handleonDelete = async () => {
+        // console.log(session._id);
+        let val = confirm("Are you sure you want to delete your account?").valueOf();
+        if(val!=false){
+            const auth = getAuth(app);
+
+            await deleteUser(auth.currentUser?auth.currentUser:user).then(() => {
+                client.delete('/del?id='+session._id).then((res)=>{
+                    alert(res.data);
+                    window.location.href = '/';
+                    removeSession('userdetail');
+                    removeSession('user');
+                    removeSession('usercontent');
+                }).catch((err)=>{
+                    console.log(err);
+                    alert(err);
+                })
+            }).catch((err) => {
+                // An error ocurred
+                // ...
+                console.log(err);
+                alert(err);
+            });
+        }
     }
     return (
         <>
@@ -45,16 +87,16 @@ export default function Dashboard() {
             <br></br><br /><hr />
             Your storage consumption - 
             <div style={{paddingTop:'20px',width:'10vw',paddingBottom:'20px'}}>
-            <CircularProgressbar value={value} maxValue={200} text={`${value * 100/ 200}%`} 
+            <CircularProgressbar value={Number.parseInt(value.toPrecision(2)) as number} maxValue={200} text={`${value * 100/ 200}%`} 
              styles={buildStyles({pathColor: `rgba(62, 152, 199,${value *100/ 200})`,
              textColor: 'white',
              trailColor: '#d6d6d6',
              backgroundColor: 'white'})} />
             </div>
             <div>
-            You have used {value}mb of 200mb free space. <br /><hr />
-            <Link className={styles.hov} href="/forgetpwd">Change Password</Link> <br />
-            <Link className={styles.hov} href="/forgetpwd">Delete Account</Link><br /><br />
+            You have used {value.toPrecision(2)}mb of 200mb free space. <br /><hr />
+            <Link className={styles.hov} href="/forgetpwd">Change Password</Link> <br /><br />
+            <p className={styles.hov} onClick={()=>handleonDelete()}>Delete Account</p><br /><br />
 
             {/* ye dono mai se koi bhi use kar delete account ke liye aur bacha hua hata de */}
 

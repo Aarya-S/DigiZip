@@ -20,8 +20,8 @@ export default function SendFiles() {
 
 
     const client = axios.create({
-        baseURL: "https://digizip.onrender.com"
-        // baseURL: "http://localhost:5000"
+        // baseURL: "https://digizip.onrender.com"
+        baseURL: "http://localhost:5000"
     })
     const Usersession = getSession('user');
     useEffect(() => {
@@ -119,7 +119,7 @@ export default function SendFiles() {
                 "time" : preset_duration,
             });
         })
-
+        if(filesarray.length!=0){
         await client.post("/preset/add",{
             "email": Usersession.email,
             "Preset_name": preset_title,
@@ -133,7 +133,9 @@ export default function SendFiles() {
         }).catch((err)=>{
             console.log(err);
             alert("Error adding preset");
-        })
+        })}else{
+            alert("Please select files to add preset");
+        }
         // console.log({
         //     "email": Usersession.email,
         //     "Preset_name": preset_title,
@@ -218,7 +220,7 @@ export default function SendFiles() {
 
 
             {/* Document selection area line */}
-
+            {files.length!=0?
                 <div className={styles.fileSelectionLine}>
 
                     <Table selectionMode="multiple" onSelectionChange={handleselect} >
@@ -243,7 +245,7 @@ export default function SendFiles() {
 
                     </Table>
 
-                </div>
+                </div>:"Add files to your account to send them."}
 
             {/* Buttons div */}
 
