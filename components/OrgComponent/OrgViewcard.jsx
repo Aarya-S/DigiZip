@@ -77,7 +77,10 @@ export default function OrgViewCard(prop ){
 
     const HandleDeletePreset = async () => {
         const val = confirm("Are you sure you want to delete this preset you wont be able to access it again?").valueOf()
-        let foo = prompt('Write the feedback for preset Rejection it will get notified to the user');
+        let foo;
+        if (val == true) {
+            foo = prompt('Write the feedback for preset Rejection it will get notified to the user');
+        } 
         if(val && foo){
             alert("Deleting Preset please wait...")
             console.log(foo+" hi")
