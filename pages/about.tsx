@@ -48,8 +48,8 @@ DigiZip is a digital storage and sharing platform of your documents for verifica
 <b>Ownership of content and licence</b><br />
 When you use the site, you provide us with your files, documents, certifications, and other information regarding these documents, as well as the eKYC details from Aadhaar in the event of Aadhaar-linked accounts. You also give us and our registered issuers permission to store your documents or certificates in your DigiZip electronically, or via URIs. You can share your contents with others using DigiZip. Unless you share your documents with others, no one can access them. <br />
 DigiZip grants you a limited, revocable, non-exclusive, non-sublicensable, and non-transferable license to use our Services, subject to and in accordance with our Terms. This license is for the sole purpose of enabling you to use our Services in the manner permitted by our Terms. Violation of any of the terms below will result in the termination of your account. <br />
-You retain any intellectual property rights that you have in your content. We do not claim ownership in any of your content, including any text, data, information, and files that you upload, share, or store in your DigiZip account. However, we need you to give us some legal permissions (known as a ‘licence') to use this content, including to host your content on our servers and back it up. This is solely for the purposes of providing and improving our products and services. This licence will end when your content is deleted from our site. <br />
-You are solely responsible for contents you share and consequences thereof. DigiZip does not actively pre-screen content, but it reserves the right to refuse or remove any content or account that in its sole discretion is found to be unlawful, offensive, threatening, promoting violence, defamatory, pornographic, or violating DigiZip Terms of Service and Privacy Policy or violating any other user or party's intellectual property rights. <br /><br />
+You retain any intellectual property rights that you have in your content. We do not claim ownership in any of your content, including any text, data, information, and files that you upload, share, or store in your DigiZip account. However, we need you to give us some legal permissions (known as a {`"licence"`}) to use this content, including to host your content on our servers and back it up. This is solely for the purposes of providing and improving our products and services. This licence will end when your content is deleted from our site. <br />
+You are solely responsible for contents you share and consequences thereof. DigiZip does not actively pre-screen content, but it reserves the right to refuse or remove any content or account that in its sole discretion is found to be unlawful, offensive, threatening, promoting violence, defamatory, pornographic, or violating DigiZip Terms of Service and Privacy Policy or violating any other user or {`party's`} intellectual property rights. <br /><br />
 
 <b>Limitation and Liability</b><br />
 You expressly understand and agree, that in no event will DigiZip be liable for any expense, loss or damage including, without limitation, indirect, consequential, exemplary or incidental loss or damage, or any expense, loss or damage whatsoever arising from use, or loss of use, of data, arising out of or in connection with the use of DigiZip. <br /><br />
@@ -67,7 +67,7 @@ You may not use the site or any content for any purpose that is unlawful or proh
       <Grid>
         <Collapse.Group splitted>
           
-          <Collapse title="What does DigiZip do?">
+          <Collapse title="What does DigiZip do?" css={{fontSize: "10px"}}>
             <Text css={{color:'$gray800', fontSize:'18px', letterSpacing:'0.2px', wordSpacing:'0.8px'}}>
             DigiZip simplifies and secures the process of document verification and sharing between two parties. To ensure that there are no unwanted delays in such a process, it has an encrypted and secure cloud-based store for documents. <br />
             We digitize the process of file sharing which has decentralized and encrypted store for better security and privacy of data. DigiZip allows users and organizations to send and request specific document pairings, and share them with ease.
@@ -75,19 +75,19 @@ You may not use the site or any content for any purpose that is unlawful or proh
             </Text>
           </Collapse>
           <br />
-          <Collapse title="What is the purpose of DigiZip ?">
+          <Collapse title="What is the purpose of DigiZip?" css={{fontSize: "10px"}}>
             <Text css={{color:'$gray800', fontSize:'18px', letterSpacing:'0.2px', wordSpacing:'0.8px'}}>
             Almost all organisations worldwide use document copies to verification purposes; this process requires the client to provide them with sets of document pairings for validation and authentication purposes. <br /> These pairings most of the time are not well described and result in multiple rounds to submit the correct documents. 
             This traditional process also consumes a lot of paper and printer ink thus at some magnitude proving harmful to the environment. There is a dire need to fasten the process and also make it digital for the convenience of the user. Thus, DigiZip is made with intention to tackle and solve above issues and come out as a easy to use digital platform for document verification and sharing.
             </Text>
           </Collapse>
           <br />
-          <Collapse title="How is DigiZip different from DigiZip?">
+          <Collapse title="How is DigiZip different from DigiZip?" css={{fontSize: "10px"}}>
             <Image  src="digi.png"
       alt="Default Image" height={400} objectFit='contain'></Image>
           </Collapse>
           <br />
-          <Collapse title="How secure is our data on DigiZip?">
+          <Collapse title="How secure is our data on DigiZip?" css={{fontSize: "10px"}}>
             <Text css={{color:'$gray800', fontSize:'18px', letterSpacing:'0.2px', wordSpacing:'0.8px'}}>
               DigiZip uses IPFS(Interplanetary File System) which is a protocol, hypermedia and file sharing peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace. <br />
               IPFS allows users to host and receive content in a manner similar to BitTorrent. As opposed to a centrally located server, IPFS is built around a decentralized system of user-operators who hold a portion of the overall data, creating a resilient system of file storage and sharing. Any user in the network can serve a file by its content address, and other peers in the network can find and request that content from any node who has it using a distributed hash table (DHT).
@@ -95,29 +95,29 @@ You may not use the site or any content for any purpose that is unlawful or proh
             </Text>
           </Collapse>
           <br />
-          <Collapse title="How does DigiZip ensure fake or duplicate accounts?">
+          <Collapse title="How does DigiZip ensure fake or duplicate accounts?" css={{fontSize: "10px"}}>
             <Text css={{color:'$gray800', fontSize:'18px', letterSpacing:'0.2px', wordSpacing:'0.8px'}}>
               DigiZip which has its sole goal towards the secure storage and transfer of website and data of users does the following 2 things to ensure no duplicate or fake accounts are made - <br /><br />
-              1. For USERS, while signing up on the platform, every user's identity is verified by using Aadhar ID and OTP. <br /><br />
+              1. For USERS, while signing up on the platform, every {`user's`} identity is verified by using Aadhar ID and OTP. <br /><br />
               2. For ORGANIZATIONS, we ensure that while signing up on our platform the organization has to input unique registration number/ID provided by proper authority or government to them in the field in which they are operating, if they don not have any unique ID to prove their authenticity, we do not offer out platform to such organizations to avoid future complications.
             </Text>
           </Collapse>
           <br />
-          <Collapse title="Preset as a  Feature">
+          <Collapse title="Preset as a feature" css={{fontSize: "10px"}}>
             <Text css={{color:'$gray800', fontSize:'18px', letterSpacing:'0.2px', wordSpacing:'0.8px'}}>
               For a smooth User Experience, we have presets for following function - <br /><br />
                <b>Share File</b> - Using this preset, the user while sending a bunch of documents or a single document can click on a preset from number of presets specifying the purpose for whcih the user wants to send the documents and by simply selecting it they will be provided with all the mandatory documents to be submitted rather than manually finding and doing it.
             </Text>
           </Collapse>
           <br />
-          <Collapse title="How can one send files to organizations?">
+          <Collapse title="How can one send files to organizations?" css={{fontSize: "10px"}}>
             <Text css={{color:'$gray800', fontSize:'18px', letterSpacing:'0.2px', wordSpacing:'0.8px'}}>
               User first of all, has to go to the <b>send files</b> sections, in which the user can select the files to be sent wither manually or using preset and then in the input field specify the Username/ID of the Organization to whom the user wants to send their files. <br /><br />
               Other way which user can send their files is that the Organization can itself request them from the user and then the user will be notified about it and can send the specified files.
             </Text>
           </Collapse>
           <br />
-          <Collapse title="How does a user come to know whether their documents have been verified or not?">
+          <Collapse title="How does a user come to know whether their documents have been verified or not?" css={{fontSize: "10px"}}>
             <Text css={{color:'$gray800', fontSize:'18px', letterSpacing:'0.2px', wordSpacing:'0.8px'}}>
               In the <b>view files</b> section, the user can see a list of files stored by them on our platform, by clicking a button on the file, the user gets a list of organization to whom they have sent the file for verification and for the period of time, in that table itself the user gets to know whether their file has been successfully verified or has been rejected or any other comments have been given by the Organization regarding the documents.
             </Text>

@@ -70,7 +70,7 @@
     align-items: center;
     justify-content: center;
     height: 36px;
-    max-width:max-content;
+    width: 30%;
     background-color: rgb(255, 254, 254);
     border-radius: 10px;
     color: #000000;
@@ -104,7 +104,7 @@
     margin-right: 1.25em;
   }
   
-  .nav__ul a {
+  .nav__ul .nav_link {
     color: #999;
   }
   

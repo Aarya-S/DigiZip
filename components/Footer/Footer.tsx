@@ -22,15 +22,15 @@ const Footer = () => {
 
       <ul className={styles.nav__ul}>
         <li>
-          <a href="https://www.linkedin.com/">LinkedIn</a>
+          <Link href="https://www.linkedin.com/"><span className={styles.nav_link}>LinkedIn</span></Link>
         </li>
 
         <li>
-          <a href="https://www.facebook.com/">Facebook</a>
+          <Link href="https://www.facebook.com/"><span className={styles.nav_link}>Facebook</span></Link>
         </li>
             
         <li>
-          <a href="https://www.instagram.com/">Instagram</a>
+          <Link href="https://www.instagram.com/"><span className={styles.nav_link}>Instagram</span></Link>
         </li>
       </ul>
     </li>
@@ -40,15 +40,15 @@ const Footer = () => {
       
       <ul className={styles.nav__ul}> 
         <li>
-          <a href="/about#privacy">Privacy Policy</a>
+          <Link href="/about#privacy"><span className={styles.nav_link}>Privacy Policy</span></Link>
         </li>
         
         <li>
-          <a href="/about#terms">Terms of Use</a>
+          <Link href="/about#terms"><span className={styles.nav_link}>Terms of Use</span></Link>
         </li>
         
         <li>
-          <a href="/about#faqs">FAQ's</a>
+          <Link href="/about#faqs"><span className={styles.nav_link}>FAQs</span></Link>
         </li>
         
       </ul>
@@ -59,11 +59,11 @@ const Footer = () => {
       
       <ul className={styles.nav__ul}>
         <li>
-          <a className={styles.footer__btn} style={{color:'black' , width:'120px', marginBottom:'6px'}} href="/register">Signup</a>
+          <Link className={styles.footer__btn} style={{color:'black' , width:'120px', marginBottom:'6px'}} href="/register">Signup</Link>
         </li>
         
         <li>
-          <a className={styles.footer__btn} style={{color:'black', width:'120px'}} href="/login">Login</a>
+          <Link className={styles.footer__btn} style={{color:'black', width:'120px'}} href="/login">Login</Link>
         </li>
         
       </ul>
