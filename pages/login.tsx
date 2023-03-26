@@ -32,6 +32,7 @@ export default function Login() {
     if(auth.currentUser!=null){
       removeSession('user');
       removeSession('userdetail');
+      removeSession('usercontent')
       auth.signOut();
     }
     // console.log(email+" "+password)
@@ -75,6 +76,7 @@ export default function Login() {
       if(auth.currentUser!=null){
         removeSession('user');
         removeSession('orgdetail');
+        removeSession('orgcontent')
         auth.signOut();
       }
       await signInWithEmailAndPassword(auth, orgemail, orgpassword).then((userCredential) => {

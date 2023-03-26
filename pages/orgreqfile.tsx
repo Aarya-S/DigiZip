@@ -6,8 +6,8 @@ import styles from "../styles/Orgreqfile.module.css";
 export default function orgreqfile(){
     const orgdetail = getSession('orgdetail') || {};
     const client = axios.create({
-        // baseURL: "https://digizip.onrender.com"
-        baseURL: "http://localhost:5000/org"
+        baseURL: "https://digizip.onrender.com/org"
+        // baseURL: "http://localhost:5000/org"
     })
 
     const [usermail, setUsermail] = useState("");

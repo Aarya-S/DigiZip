@@ -20,8 +20,8 @@ export default function SendFiles() {
 
 
     const client = axios.create({
-        // baseURL: "https://digizip.onrender.com"
-        baseURL: "http://localhost:5000"
+        baseURL: "https://digizip.onrender.com"
+        // baseURL: "http://localhost:5000"
     })
     const Usersession = getSession('user');
     useEffect(() => {
@@ -115,8 +115,6 @@ export default function SendFiles() {
             }
         },[])
         }
-        
-        console.log(selection);
     }
 
     const handleSubmit = async () => {
@@ -126,24 +124,28 @@ export default function SendFiles() {
                 "CID": value.CID,
                 "FileName" : value.metadata.title,
                 "accesstype": "read",
-                "time" : preset_duration,
             });
         })
-        if(filesarray.length!=0){
-        await client.post("/preset/add",{
-            "email": Usersession.email,
-            "Preset_name": preset_title,
-            "description": preset_desc,
-            "orgHash": preset_orgcode,
-            "files": filesarray,
-        }).then((res)=>{
-            console.log(res.data);
-            alert("Preset added successfully");
-            handleclearform();
-        }).catch((err)=>{
-            console.log(err);
-            alert("Error adding preset");
-        })}else{
+        alert("Sharing files...");
+        const date = new Date(preset_duration);
+        const today = new Date();
+        if(filesarray.length!=0 && preset_access!="defaultAccess" && date>today && preset_orgcode!="" && preset_orgname!="" && preset_title!="" && preset_desc!=""){
+            await client.post("/preset/add",{
+                "email": Usersession.email,
+                "Preset_name": preset_title,
+                "description": preset_desc,
+                "orgHash": preset_orgcode,
+                "files": filesarray,
+                "time": preset_duration,
+            }).then((res)=>{
+                console.log(res.data);
+                alert("Preset added successfully");
+                handleclearform();
+            }).catch((err)=>{
+                console.log(err);
+                alert("Error adding preset");
+            })
+        }else{
             alert("Please select files to add preset");
         }
         // console.log({
@@ -153,6 +155,17 @@ export default function SendFiles() {
         //     "orgHash": preset_orgcode,
         //     "files": filesarray,
         // });
+    }
+
+    const validateDate = (date) => {
+        const today = new Date();
+        const selectedDate = new Date(date);
+        if(selectedDate>today){
+            // console.log(selectedDate.getFullYear()+"-"+selectedDate.getMonth()+"-"+selectedDate.getDate());
+            setPresetDuration(date);
+        }else{
+            alert("Please select a valid date");
+        }
     }
 
     return (
@@ -220,7 +233,7 @@ export default function SendFiles() {
 
                     <span className={styles.accessDurationLabel}>Select duration:</span>
 
-                    <input type="date" value={preset_duration} style={{paddingLeft: "10px",color:"white"}} onChange={(e)=>setPresetDuration(e.target.value)}/>
+                    <input type="date" value={preset_duration} style={{paddingLeft: "10px",color:"white"}} onChange={(e)=>validateDate(e.target.value)}/>
 
                 </div>
 

@@ -39,7 +39,8 @@ export default function OrgViewCard(prop ){
         handleClick();
     });
     const client = axios.create({
-        baseURL: "http://localhost:5000/preset"
+        baseURL: "https://digizip.onrender.com/preset"
+        // baseURL: "http://localhost:5000/preset"
     });
     const navigate = useRouter() 
     for (let index = 0; index < getfiles.files.length; index++) {
@@ -56,7 +57,7 @@ export default function OrgViewCard(prop ){
     ];
 
     const HandleView = (files_prop) => {
-        navigate.push("/previewFile/"+files_prop.CID+"."+files_prop.FileName+"."+files_prop.accesstype+"."+getfiles.description)
+        navigate.push("/previewFile/"+files_prop.CID+"."+files_prop.FileName+"."+files_prop.accesstype+"."+getfiles.description+"."+"isorg"+"."+getfiles.generated_hash_preset)
         // console.log(getfiles);
     }
 
@@ -107,7 +108,7 @@ export default function OrgViewCard(prop ){
                 );
             case "end_date":
                 return (
-                    <>{file.time}</>
+                    <>{getfiles.time}</>
                 );
             case "view_file":
                 return (

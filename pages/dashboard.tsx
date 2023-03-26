@@ -28,8 +28,8 @@ export default function Dashboard() {
     const[resetpwd,setResetpwd] = useState('');
     const[encrytFpwd,setencrytFpwd] = useState('');
     const client = axios.create({
-        // baseURL: "https://digizip.onrender.com"
-        baseURL: "http://localhost:5000/auth"
+        baseURL: "https://digizip.onrender.com/auth"
+        // baseURL: "http://localhost:5000/auth"
     })
     const handleonReset = async () => {
         await axios.post('https://digizip.onrender.com/auth/check',{

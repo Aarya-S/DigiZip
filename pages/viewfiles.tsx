@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ViewCardUser from "../components/UserComponents/ViewCard/ViewCard";
 import styles from "../styles/UserHome.module.css";
-import { createsession, getSession } from "../utils/sessionhandling";
+import { createsession, getSession, removeSession } from "../utils/sessionhandling";
 
 
 function UserHome() {
@@ -12,6 +12,7 @@ function UserHome() {
     const Usersession = getSession('userdetail');
     const client = axios.create({
         baseURL: "https://digizip.onrender.com"
+        // baseURL: "http://localhost:5000"
     })
     
     useEffect(() => {
@@ -34,15 +35,19 @@ function UserHome() {
       // }
     }, [])
     
+    const handleRefresh = () => {
+      removeSession('usercontent');
+      window.location.reload();
+    }
+
     // console.log(files)
     
     return (
         <>
         <div className={styles.UserHomeBody}>
         <br /><br /><br /> <br />
-
-
         <div className={styles.cardsDiv}>
+        <button onClick={()=>{handleRefresh()}} className={styles.cardsDiv}>Refresh</button>
         <h3>Your Documents</h3>
         {error.length>0 && <p>{error}</p>}
         {files.length!=0?

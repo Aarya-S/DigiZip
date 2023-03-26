@@ -14,8 +14,8 @@ export default function OrgDashBoard() {
     const [otp, setOtp] = useState("");
     const [account, setAccount] = useState(orgdetail!=null?orgdetail.account:'Account not found');
     const client = axios.create({
-        // baseURL: "https://digizip.onrender.com/org"
-        baseURL: "http://localhost:5000/org"
+        baseURL: "https://digizip.onrender.com/org"
+        // baseURL: "http://localhost:5000/org"
     })
 
     // const changeAdmin = async () => {
@@ -96,7 +96,10 @@ export default function OrgDashBoard() {
             <input style={{marginLeft:'15px'}} id="username" name="username" value={orgdetail.name} readOnly/><br/>
         <br/>
         <label style={{}} htmlFor="admin">Admin </label>
-        <input style={{marginLeft:'15px'}} id="admin" name="admin" value={orgdetail.admin} readOnly/>
+        <input style={{marginLeft:'15px'}} id="admin" name="admin" value={orgdetail.admin} readOnly/><br/>
+        <br/>
+        <label style={{}} htmlFor="admin">organization share Code </label>
+        <input style={{marginLeft:'15px'}} id="admin" name="admin" value={orgdetail.generated_hash} readOnly/>
         {/* <button onClick={changeAdmin}>edit</button><br/> */}
         <br/><hr />
 

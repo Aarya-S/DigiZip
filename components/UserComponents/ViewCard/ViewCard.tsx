@@ -76,7 +76,7 @@ export default function ViewCardUser(prop: any) {
     const [files_prop, setFiles] = useState(prop.prop);
     const navigate = useRouter()
     const HandleView = () => {
-        navigate.push("/previewFile/"+files_prop.CID+"."+files_prop.metadata.title)
+        navigate.push("/previewFile/"+files_prop.CID+"."+files_prop.metadata.title+"."+"isuser")
     }
     useEffect(() => {
         handleClick(); //isko haath mat lagao
@@ -214,7 +214,7 @@ export default function ViewCardUser(prop: any) {
             <div className={styles.cardHeader}>
             <div className={styles.docInfoDiv}>
                 <div className={styles.docName}>{files_prop.metadata.title}</div>
-                <div className={styles.docSize}>{files_prop.metadata.size/1000} MB</div>
+                <div className={styles.docSize}>{files_prop.metadata.size/1000} KB</div>
             </div>
             <div className={styles.actionButtonsDiv}>
                 {/* View file button */}

@@ -190,7 +190,7 @@ export default function Register() {
                 <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setAdhaar(e.target.value)}} id="aadhar" name="loginId"/><br/>
 
                 {error?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{error}</label>:""}     
-                {loading?<label htmlFor="loading">Loading...</label>:
+                {loading?<label htmlFor="loading" style={{alignSelf:'center'}} >Loading...</label>:
                     <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>SignUp</button>}
                 {loading==true && error==""?<><label style={{alignSelf:'center'}} htmlFor="otp" >Verify OTP:</label>
                 <input style={{alignSelf:'center'}} onChange={(e)=>{setOTP(e.target.value)}} id="otp" name="otp"/><br/>
@@ -224,7 +224,7 @@ export default function Register() {
                     <label style={{alignSelf:'center'}} htmlFor="orgcpass" >Confirm Password</label>
                     <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setAdminConfirmPassword(e.target.value)}} id="orgcpass" name="orgcpass"/><br/>
                     {/* {name+" "+ gstNo+" "+  adminEmail+" "+  adminPassword+" "+  adminConfirmPassword} */}
-                    {loading?<label htmlFor="loading">Loading...</label>:
+                    {loading?<label htmlFor="loading" style={{alignSelf:'center'}}>Loading...</label>:
                     <button style={{alignSelf:'center',width:'10vw'}} onClick={handleorgsubmit}>SignUp</button>}
                     {loading==true && orgerror==""?<><label style={{alignSelf:'center'}} htmlFor="otporg" >Verify OTP:</label>
                     <input style={{alignSelf:'center'}} onChange={(e)=>{setOrgOTP(e.target.value)}} id="otporg" name="otporg"/><br/>
