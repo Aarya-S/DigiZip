@@ -15,7 +15,7 @@ export default function SendFiles() {
     const[preset_duration,setPresetDuration]=useState("");
     const[preset_orgcode,setPresetOrgCode]=useState("");
     const[preset_orgname,setPresetOrgName]=useState("");
-    const[selection,setSelection]=useState([]);
+    let [selection,setSelection]=useState([]);
 
 
 
@@ -64,7 +64,7 @@ export default function SendFiles() {
 
 
     const renderCell = (user, columnKey) => {
-        const cellValue = files[columnKey ];
+        const cellValue = files[columnKey];
         switch (columnKey) {
             case "fileName":
                 return (
@@ -90,23 +90,33 @@ export default function SendFiles() {
     }
 
     const handleselect = (key) => {
-        setSelection([]);
-        if(key=="all"){
-            setSelection(files);
-        }else{
+        // setSelection([]);
+        // if(key=="all"){
+        //     setSelection(files);
+        // }else{
+        //     key.forEach((value)=>{
+        //             if(value!=undefined){
+        //                 selection.push(files[value]);
+        //                 setSelection(selection);
+        //             }
+        //         })
+        // }
+        // console.log(selection);
+
+        // aarya's code
+        if (key == "all") {
+            selection = files;
+        } else {
+            selection = [];
             key.forEach((value)=>{
-                    if(value!=undefined){
-                        selection.push(files[value]);
-                        setSelection(selection);
-                    }
-                })
+            if(value!=undefined){
+                selection.push(files[value]);
+                setSelection(selection);
+            }
+        },[])
         }
-        // key.forEach((value)=>{
-        //     if(value!=undefined){
-        //     selection.push(files[value]);
-        //     setSelection(selection);}
-        //     // console.log(files[value])
-        // })
+        
+        console.log(selection);
     }
 
     const handleSubmit = async () => {
@@ -223,7 +233,7 @@ export default function SendFiles() {
             {files.length!=0?
                 <div className={styles.fileSelectionLine}>
 
-                    <Table selectionMode="multiple" onSelectionChange={handleselect} >
+                    <Table selectionMode="multiple" onSelectionChange={handleselect} defaultSelectedKeys={[]} >
 
                         <Table.Header columns={columns}>
 
