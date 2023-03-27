@@ -1,12 +1,13 @@
 import { ChangeEvent, useState } from 'react'
 import extractMetadata from "../utils/ExtractMetadata";
-import {compressArrayBuffer, decompressArrayBuffer} from "../utils/CompressFile";
-import { encryptArrayBuffer,decryptArrayBuffer } from '../utils/EncryptFile';
-import {retrieveFiles, storeFiles} from '../utils/Web3Config&Functions';
-import { handleDownload } from '../utils/HandleDownload';
-import PdfViewer from '../components/PdfViewer/PdfViewer';
+import {compressArrayBuffer} from "../utils/CompressFile";
+import { encryptArrayBuffer } from '../utils/EncryptFile';
+import {storeFiles} from '../utils/Web3Config&Functions';
+// import { handleDownload } from '../utils/HandleDownload';
+// import PdfViewer from '../components/PdfViewer/PdfViewer';
 import axios from 'axios';
 import { getSession, removeSession } from '../utils/sessionhandling';
+import styles from '../styles/AddFile.module.css';
 
 export default function uploadfile() {
 // State variables
@@ -69,7 +70,7 @@ export default function uploadfile() {
                 removeSession('usercontent');
                 setLoading(false);
               }).catch((err)=>{
-                setErr("something went wrong");
+                setErr("Something went wrong");
                 console.log(err);
                 setLoading(false);
               });
@@ -90,19 +91,18 @@ export default function uploadfile() {
     return (
         <>
           
-          <div>
-            <br></br>
-            <br></br>
-            <br></br>
-            {err}
-            <br></br> 
-            <input type="file" onChange={(e)=>handleChange(e)} accept="application/pdf"></input>
-            <button onClick={upload} hidden={file.byteLength==0 && !loading}>Upload</button>
-            {loading?<div>Uploading...</div>:""}
+          <div className={styles.addFileWrapper}>
+            
+            <div className={styles.inputArea}>
+              <input type="file" onChange={(e)=>handleChange(e)} accept="application/pdf" className={styles.fileInput}></input>
+              <button onClick={upload} className={styles.uploadButton} hidden={file.byteLength==0 && !loading}>Upload</button>
+            </div>
+            
 
-            <br></br>
-            <br></br>
-           
+            <div className={styles.statusDivWrapper}>
+            {loading?<div className={styles.statusDiv}>Uploading...</div>:""}
+            <div className={styles.statusDivErr}>{err}</div>
+            </div>
           </div>
 
           

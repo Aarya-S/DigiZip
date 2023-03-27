@@ -1,0 +1,90 @@
+.UserHomeBody {
+    background-color: black;
+    padding: 20px;
+    margin: 0;
+    font-size: 14px;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+
+.cardsDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-width: 100%;
+    min-height: 9vh;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+.pageTitle {
+    color: white;
+}
+
+.buttonsDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    height: 15vh;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+}
+
+.refreshButton {
+    background-color: #1e1e1e;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 10%;
+    font-size: 17px;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    border-radius: 0.5rem;
+}
+
+.refreshButton:hover {
+    background-color: white;
+    color: black;
+}
+
+.addFileButton {
+    background-color: #1e1e1e;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    /* padding: 10px; */
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 50%;
+    font-size: 17px;
+    height: 100%;
+    display: flex;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.innerButton {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    text-decoration: none;
+    border-radius: 0.5rem;
+}
+
+.addFileButton:hover {
+    background-color: white;
+    color: black;
+}

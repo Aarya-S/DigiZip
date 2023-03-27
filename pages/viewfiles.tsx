@@ -1,8 +1,11 @@
+import { faFileCirclePlus, faRefresh } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ViewCardUser from "../components/UserComponents/ViewCard/ViewCard";
-import styles from "../styles/UserHome.module.css";
+import styles from "../styles/UserViewFiles.module.css";
 import { createsession, getSession, removeSession } from "../utils/sessionhandling";
+import Link from 'next/link';
 
 
 function UserHome() {
@@ -46,9 +49,15 @@ function UserHome() {
         <>
         <div className={styles.UserHomeBody}>
         <br /><br /><br /> <br />
+        
+        {/* Buttons div */}
+        <div className={styles.buttonsDiv}>
+          <button onClick={()=>{handleRefresh()}} className={styles.refreshButton}><FontAwesomeIcon icon={faRefresh} style={{marginRight: 15}} />Refresh</button>
+          <Link href="/addfile" className={styles.addFileButton}><button className={styles.innerButton}><FontAwesomeIcon icon={faFileCirclePlus} style={{marginRight: 15}} />Add File</button></Link>
+        </div>
+
         <div className={styles.cardsDiv}>
-        <button onClick={()=>{handleRefresh()}} className={styles.cardsDiv}>Refresh</button>
-        <h3>Your Documents</h3>
+        <h3 className={styles.pageTitle}>Your Documents</h3>
         {error.length>0 && <p>{error}</p>}
         {files.length!=0?
         files.map((file)=>{
