@@ -9,7 +9,7 @@ import axios from 'axios';
 import { getSession, removeSession } from '../utils/sessionhandling';
 import styles from '../styles/AddFile.module.css';
 
-export default function uploadfile() {
+export default function Uploadfile() {
 // State variables
     const[file,setFile] = useState(new ArrayBuffer(0)); 
     const[metadata,setMetadata] = useState(Object);

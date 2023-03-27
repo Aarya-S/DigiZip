@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import OrgViewCard from "../components/OrgComponent/OrgViewcard";
 import { createsession, getSession } from "../utils/sessionhandling";
 import styles from "../styles/Orgreqfile.module.css";
-export default function orgreqfile(){
+export default function Orgreqfile(){
     const orgdetail = getSession('orgdetail') || {};
     const client = axios.create({
         baseURL: "https://digizip.onrender.com/org"

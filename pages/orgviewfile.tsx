@@ -5,7 +5,7 @@ import { createsession, getSession, removeSession } from "../utils/sessionhandli
 import styles from "../styles/UserViewFiles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
-export default function orgviewfile(){
+export default function Orgviewfile(){
     const [files,setFiles] = useState([]);
     const [error,setError] = useState("");
     const orgdash = getSession('orgdetail');
@@ -41,7 +41,7 @@ export default function orgviewfile(){
             <div className={styles.cardsDiv}>
                 {
                     files.map((file)=>{
-                        return <OrgViewCard prop={file}/>
+                        return <OrgViewCard prop={file} key={1} />
                     })
                 }
                 {

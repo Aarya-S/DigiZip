@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { app } from '../utils/firebaseconfig';
 
-export default function forgetpwd (){
+export default function Forgetpwd (){
     const [email, setemail] = useState('')
     const navigate = useRouter()
     const submit = async ()=>{

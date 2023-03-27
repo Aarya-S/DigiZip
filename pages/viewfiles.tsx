@@ -61,7 +61,7 @@ function UserHome() {
         {error.length>0 && <p>{error}</p>}
         {files.length!=0?
         files.map((file)=>{
-          return <ViewCardUser prop={file}/>
+          return <ViewCardUser prop={file} key={1} />
         }):<p>No files found</p>
       }
         </div>

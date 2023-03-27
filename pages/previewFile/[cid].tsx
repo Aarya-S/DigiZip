@@ -7,7 +7,7 @@ import { decryptArrayBuffer } from "../../utils/EncryptFile"
 import { getSession } from "../../utils/sessionhandling"
 import { retrieveFiles } from "../../utils/Web3Config&Functions"
 
-export default function previewFile() {
+export default function PreviewFile() {
     const { query } = useRouter()
     const [cid, setCid] = useState(query.cid?.toString() || "")
     const [file,setFile]=  useState( new ArrayBuffer(0))
