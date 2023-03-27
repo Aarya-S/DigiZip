@@ -214,7 +214,7 @@ export default function SendFiles() {
 
                     <select required value={preset_access} style={{paddingLeft: "10px"}} onChange={(e)=>setPresetAccess(e.target.value)}>
 
-                        <option value="defaultAccess">select</option>
+                        <option value="defaultAccess">Select</option>
 
                         <option value="read">Read</option>
 

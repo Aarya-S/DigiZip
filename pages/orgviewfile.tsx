@@ -2,7 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import OrgViewCard from "../components/OrgComponent/OrgViewcard";
 import { createsession, getSession, removeSession } from "../utils/sessionhandling";
-import styles from "../styles/UserHome.module.css";
+import styles from "../styles/UserViewFiles.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 export default function orgviewfile(){
     const [files,setFiles] = useState([]);
     const [error,setError] = useState("");
@@ -30,8 +32,12 @@ export default function orgviewfile(){
             <br />
             <br />
             <br />
-            <button onClick={()=>{handleRefresh()}} className={styles.cardsDiv}>Refresh</button>
-            <h3 className={styles.cardsDiv}>Your Documents</h3>
+            <div className={styles.centerDiv}>
+            <div className={styles.buttonsDivOrg}>
+                <button onClick={()=>{handleRefresh()}} className={styles.refreshButton} style={{width: 300}}> <FontAwesomeIcon icon={faRefresh} style={{marginRight: 15}} />Refresh</button>
+            </div>
+
+            <h3 className={styles.pageTitle}>Your Documents</h3>
             <div className={styles.cardsDiv}>
                 {
                     files.map((file)=>{
@@ -39,8 +45,11 @@ export default function orgviewfile(){
                     })
                 }
                 {
-                    files.length==0 ?<p>No files found</p>:<></>
+                    <div style={{color: "white"}}>
+                        {files.length==0 ?<p>No files found</p>:<></>}
+                    </div>
                 }
+            </div>
             </div>
             <br />
             <br />
