@@ -21,8 +21,9 @@ type UserType = {
     read: boolean,
     download : boolean,
     time: string,
-    status: String //hidden data
-    org_hash: string //hidden data
+    status: String ,//hidden data
+    org_hash: string,
+    preset_hash:string //hidden data
 };
 
 
@@ -105,7 +106,7 @@ export default function ViewCardUser(prop: any) {
         if(val){
             const res = await client.post("/file/revoke",{
                 cid : files_prop.CID,
-                hash : id.org_hash
+                hash : id.preset_hash
             }).then(res => {
                 alert("Access revoked successfully")
                 window.location.reload()
@@ -132,7 +133,7 @@ export default function ViewCardUser(prop: any) {
                 );
             case "status_byOrg":
                 return (
-                    <>{user.status?"Received":"Rejected"}</>
+                    <>{user.status?"Rejected":"Received"}</>
                 );
             case "remove_access":
                 return (

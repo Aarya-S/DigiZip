@@ -7,9 +7,19 @@ import user from "@nextui-org/react/types/user";
 import { deleteUser } from "@firebase/auth";
 import { getAuth } from "firebase/auth";
 import { app } from "../utils/firebaseconfig";
+import React from "react";
 
 export default function OrgDashBoard() {
-    const orgdetail = getSession('orgdetail');
+    const orgdetail = getSession('orgdetail') || {
+        name: "name not found",
+        admin: "admin not found",
+        gst_no: "gst_no not found",
+        accounts: ["account not found", "account not found", "account not found"],
+        verified_admin: false,
+        verified_org: false,
+        otp: "otp not found",
+        generated_hash: "generated_hash not found",
+    };
     const user = getSession('user');
     const [otp, setOtp] = useState("");
     const [account, setAccount] = useState(orgdetail!=null?orgdetail.account:'Account not found');

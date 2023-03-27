@@ -119,13 +119,13 @@ export default function SendFiles() {
 
     const handleSubmit = async () => {
         const filesarray = [];
-        selection.forEach((value)=>{
-            filesarray.push({
-                "CID": value.CID,
-                "FileName" : value.metadata.title,
-                "accesstype": "read",
-            });
-        })
+            selection.forEach((value)=>{
+                filesarray.push({
+                    "CID": value.CID,
+                    "FileName" : value.metadata.title,
+                    "accesstype": preset_access,
+                });
+            })
         alert("Sharing files...");
         const date = new Date(preset_duration);
         const today = new Date();
