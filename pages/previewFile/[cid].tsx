@@ -24,17 +24,17 @@ export default function PreviewFile() {
             if(getorg[i].generated_hash_preset==cid.split('.')[5]){
               axios.get(path).then((res)=>{
                 setFile(decompressArrayBuffer(decryptArrayBuffer(res.data)))
+              }).catch((err)=>{
+                console.log(err)
+                alert("network error")
               })
               break;
-            }else{
-              alert("You are not authorized to view this file")
-              window.location.href="/"
             }
           }
         }
-      }else if(file.byteLength==0){
+      }else{
         const getuser = getSession('usercontent');
-        if(getuser){
+        if(getuser && file.byteLength==0){
           for(let i=0;i<getuser.length;i++){
             if(getuser[i].CID==cid.split('.')[0]){
               axios.get(path).then((res)=>{
@@ -44,9 +44,6 @@ export default function PreviewFile() {
                 alert("network error")
               })
               break;
-            }else{
-              alert("You are not authorized to view this file")
-              window.location.href="/"
             }
           }
         }

@@ -21,7 +21,7 @@ export default function Dashboard() {
         });
     }
     let value = size/1000000;
-    console.log(value.toPrecision(2));
+    let num = Number.parseInt(value.toPrecision(2));
     const[name,setName] = useState(session!=null?session.email:'Name not found')
     // const[dob,setDob] = useState(session!=null?session.dob:'DOB not found')
     const[verifiy,setVerifiy] = useState(session!=null?session.verified:'Verification not found')
@@ -87,8 +87,8 @@ export default function Dashboard() {
             <br></br><br /><hr />
             Your storage consumption - 
             <div style={{paddingTop:'20px',width:'10vw',paddingBottom:'20px'}}>
-            <CircularProgressbar value={Number.parseInt(value.toPrecision(2)) as number} maxValue={200} text={`${value * 100/ 200}%`} 
-             styles={buildStyles({pathColor: `rgba(62, 152, 199,${value *100/ 200})`,
+            <CircularProgressbar value={num} maxValue={200} text={`${num * 100/ 200}%`} 
+             styles={buildStyles({pathColor: `rgba(62, 152, 199,${num *100/ 200})`,
              textColor: 'white',
              trailColor: '#d6d6d6',
              backgroundColor: 'white'})} />
