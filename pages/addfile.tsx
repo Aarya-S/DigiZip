@@ -39,7 +39,7 @@ export default function Uploadfile() {
             setErr(err);
           })
         }else{
-          setErr("File size too large it should be less than 100MB");
+          setErr("File size too large it should be less than 200MB");
         }
     }
     const upload = async () => {

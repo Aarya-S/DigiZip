@@ -46,7 +46,7 @@ export default function Register() {
         setError("");
         
         if(password!=isPasswordValid){
-            setError("Password mismatching confirm again");
+            setError("Password mismatch, confirm again");
             return false;
         }
         if(validator(password)!=true){
@@ -92,7 +92,7 @@ export default function Register() {
         setOrgerror("")
         
         if(adminPassword!=adminConfirmPassword){
-            setOrgerror("Password mismatching confirm again");
+            setOrgerror("Password mismatch, confirm again");
             return false;
         }
 

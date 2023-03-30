@@ -47,7 +47,7 @@ export default function Login() {
               navigate.push("/");
               setLoading(false);
             }).catch((err)=>{
-              setError("Error Occured")
+              setError("Error Occurred")
             });
           }
           else{
@@ -87,7 +87,7 @@ export default function Login() {
               createsession(res.data,'orgdetail').then((res)=>{
                 navigate.push("/");
               }).catch((err)=>{
-                setOrgerror("Error Occured")
+                setOrgerror("Error Occurred")
               });
             }
             else{

@@ -62,7 +62,7 @@ export default function OrgViewCard(prop ){
     }
 
     const HandleDeleteFileFromPreset = async (files_prop) => {
-        const val = confirm("Are you sure you want to delete this file from preset you wont be able to access it again?").valueOf()
+        const val = confirm("Are you sure you want to delete this file, you won't be able to access it again").valueOf()
         if(val){
             alert("Deleting File please wait...")
             await client.delete("/removeFileFromPreset?orghash="+getfiles.orgHash+"&CID="+files_prop+"&prehash="+getfiles.generated_hash_preset)
@@ -76,21 +76,21 @@ export default function OrgViewCard(prop ){
     }
 
     const HandleDeletePreset = async () => {
-        const val = confirm("Are you sure you want to delete this preset you wont be able to access it again?").valueOf()
+        const val = confirm("Are you sure you want to delete these files you won't be able to access it again").valueOf()
         let foo;
         if (val == true) {
-            foo = prompt('Write the feedback for preset Rejection it will get notified to the user');
+            foo = prompt('Write the reason for the rejection, user will be notified');
         } 
         if(val && foo){
-            alert("Deleting Preset please wait...")
+            alert("Deleting files please wait...")
             console.log(foo+" hi")
             await client.delete("/del?hash="+getfiles.generated_hash_preset+"&des="+foo)
             .then(res => {
-                alert("Preset Deleted Successfully")
+                alert("Files Deleted Successfully")
                 removeSession("orgcontent")
                 window.location.reload();
             }).catch(err => {
-                alert("Error in Deleting preset "+err)
+                alert("Error in Deleting files "+err)
             })
             
         }
@@ -182,7 +182,7 @@ export default function OrgViewCard(prop ){
                     </Table.Row>
                     )}
                 </Table.Body>
-            </Table>:"No Files in this Preset"}
+            </Table>:"No Files"}
             </div>
         </div>
         </>

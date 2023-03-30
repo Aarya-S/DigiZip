@@ -102,7 +102,7 @@ export default function ViewCardUser(prop: any) {
       });
 
     const HandleRevokeAccess = async (id: UserType) => {
-        const val = confirm("Are you sure you want to revoke access?").valueOf()
+        const val = confirm("Are you sure, do you want to revoke access?").valueOf()
         if(val){
             const res = await client.post("/file/revoke",{
                 cid : files_prop.CID,
@@ -167,7 +167,7 @@ export default function ViewCardUser(prop: any) {
                     if(val && input_files[0].size < 100000000){
                         input_files[0].arrayBuffer().then(buffer => {
                             const cid = storeFiles(encryptArrayBuffer(compressArrayBuffer(buffer)),files_prop.metadata.title).then(cid => {
-                                alert("Editing file please wait... ")
+                                alert("Editing File please wait... ")
                                 client.post("/file/edit",{
                                         email : session.email,
                                         cid_old : files_prop.CID,
@@ -273,7 +273,7 @@ export default function ViewCardUser(prop: any) {
                     </Table.Row>
                     )}
                 </Table.Body>
-            </Table>:"No Organization has access to this file"}
+            </Table>:"No organization has access to this file"}
         </div>
         </div>
 
