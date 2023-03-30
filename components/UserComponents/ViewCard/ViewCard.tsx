@@ -173,7 +173,7 @@ export default function ViewCardUser(prop: any) {
                                         cid_old : files_prop.CID,
                                         cid_new : cid,
                                         FileHash : hashcontent,
-                                        size : input_files[0].size
+                                        size : (input_files[0].size)/1000
                                     }).then(res => {
                                         alert("File Uploaded Successfully")
                                         removeSession("usercontent")
@@ -197,7 +197,7 @@ export default function ViewCardUser(prop: any) {
     const deletefile = async () => {
         const val = confirm("Are you sure you want to delete this file?").valueOf()
         if(val){
-            alert("Deleting File please wait...")
+            alert("Deleting File ...")
             await client.delete("/file/del?email="+session.email+"&cid="+files_prop.CID)
             .then(res => {
                 alert("File Deleted Successfully")

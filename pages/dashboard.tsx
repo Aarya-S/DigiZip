@@ -95,8 +95,8 @@ export default function Dashboard() {
             </div>
             <div>
             You have used {value.toPrecision(2)}mb of 200mb free space. <br /><hr />
-            <Link className={styles.hov} href="/forgetpwd">Change Password</Link> <br /><br />
-            <p className={styles.hov} onClick={()=>handleonDelete()}>Delete Account</p><br /><br />
+            <Link className={styles.hov} href="/forgetpwd">Change Password</Link> <br />
+            <div onClick={()=>handleonDelete()} className={styles.hov}>Delete Account</div><br />
 
             {/* ye dono mai se koi bhi use kar delete account ke liye aur bacha hua hata de */}
 

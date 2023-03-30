@@ -68,6 +68,7 @@ export default function Uploadfile() {
               }).then((res)=>{
                 alert(res.data+" Successfully ");
                 removeSession('usercontent');
+                window.location.href = "/viewfiles";
                 setLoading(false);
               }).catch((err)=>{
                 setErr("Something went wrong");
@@ -90,21 +91,18 @@ export default function Uploadfile() {
 
     return (
         <>
-          
-          <div className={styles.addFileWrapper}>
+          <div className={styles.card}>
             
             <div className={styles.inputArea}>
               <input type="file" onChange={(e)=>handleChange(e)} accept="application/pdf" className={styles.fileInput}></input>
               <button onClick={upload} className={styles.uploadButton} hidden={file.byteLength==0 && !loading}>Upload</button>
             </div>
-            
 
             <div className={styles.statusDivWrapper}>
             {loading?<div className={styles.statusDiv}>Uploading...</div>:""}
             <div className={styles.statusDivErr}>{err}</div>
             </div>
           </div>
-
           
         </>
     )

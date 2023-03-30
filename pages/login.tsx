@@ -55,8 +55,8 @@ export default function Login() {
             // setLoading(false);
           }
       }).catch((err)=>{
-          setError(err.response.data);
-          alert(err.response.data)
+          setError(err);
+          alert(err)
           // setLoading(false);
       })
     }).catch((error) => {

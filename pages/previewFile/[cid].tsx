@@ -1,3 +1,4 @@
+import { faAlignCenter } from "@fortawesome/free-solid-svg-icons"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { useState,useEffect } from "react"
@@ -54,17 +55,11 @@ export default function PreviewFile() {
       // })
     }, [])
     return (
-        <div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            {file.byteLength>0?<PdfViewer file={file}/>:<p>loading...</p>}
+        <div style={{marginTop:'5vh'}}>
+            {file.byteLength>0?<PdfViewer file={file}/>:<p>Loading...</p>}
             <br></br>
             {cid.split('.')[2]=="download" || cid.split('.')[2]=="isuser"?
-            <button onClick={()=>{retrieveFiles(cid.split('.')[0],cid.split('.')[1])}}>Download</button>:""}
+            <button style={{marginLeft:'5vw', backgroundColor: '#1e1e1e', color: 'white',  border: '2px solid white',borderRadius: '5px',padding:'10px', fontSize: '14px',fontWeight: '600',cursor: 'pointer',width:'10%',height: '100%', transition: 'all 0.3s ease-in-out'}} onClick={()=>{retrieveFiles(cid.split('.')[0],cid.split('.')[1])}}>Download</button>:""}
             {
               cid.split('.')[3]?
               <p>Description : {cid.split('.')[3]}</p>:""

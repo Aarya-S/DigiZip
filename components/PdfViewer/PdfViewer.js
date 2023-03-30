@@ -8,7 +8,7 @@ const PdfViewer = (filedata) => {
     const [file, setFiles] = useState(filedata);
     let renderedPdf;
     const pageRenderRef = useRef(null);
-    const DEFAULT_SCALE = 2;
+    const DEFAULT_SCALE = 1.2;
     let scale = 1;
 
     // useEffect(() => {
@@ -84,9 +84,17 @@ const PdfViewer = (filedata) => {
             {/* <h1>PDF.js Sample Example</h1> */}
             {/* <button onClick={zoomIn}>Zoom In</button>
              */}
-            <div ref={pageRenderRef}></div>
+            <div style={{ paddingLeft: '0', 
+                          paddingRight: '0',
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                          display: 'block',
+                          width: '650px'}}  ref={pageRenderRef}>
+        </div>
         </div>
     )
 }
 
 export default PdfViewer;
+
+ 

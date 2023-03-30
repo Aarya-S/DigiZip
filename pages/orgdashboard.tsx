@@ -108,7 +108,7 @@ export default function OrgDashBoard() {
         <label style={{}} htmlFor="admin">Admin </label>
         <input style={{marginLeft:'15px'}} id="admin" name="admin" value={orgdetail.admin} readOnly/><br/>
         <br/>
-        <label style={{}} htmlFor="admin">organization share Code </label>
+        <label style={{}} htmlFor="admin">Organization Share Code </label>
         <input style={{marginLeft:'15px'}} id="admin" name="admin" value={orgdetail.generated_hash} readOnly/>
         {/* <button onClick={changeAdmin}>edit</button><br/> */}
         <br/><hr />
@@ -155,7 +155,7 @@ export default function OrgDashBoard() {
             {/* Yaha pe GST verification / baki verificationz ka sources ka daaldenge */}
             <br /><hr />
             <Link className={styles.hov} href="/forgetpwd">Change Password</Link><br />
-            <p className={styles.hov} onClick={handleonReset}>Delete Organization</p><br /><br />
+            <div className={styles.hov} onClick={handleonReset}>Delete Organization</div><br /><br />
 
             {/* ye dono mai se koi bhi use kar delete account ke liye aur bacha hua hata de */}
 

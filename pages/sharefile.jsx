@@ -139,14 +139,15 @@ export default function SendFiles() {
                 "time": preset_duration,
             }).then((res)=>{
                 console.log(res.data);
-                alert("Preset added successfully");
+                alert("Files sent successfully");
+                window.location.href = "/";
                 handleclearform();
             }).catch((err)=>{
                 console.log(err);
-                alert("Error adding preset");
+                alert("Error sending files");
             })
         }else{
-            alert("Please select files to add preset");
+            alert("Please select files to be sent");
         }
         // console.log({
         //     "email": Usersession.email,
