@@ -11,7 +11,7 @@ export default function About() {
     const [org, setOrg] = useState([])
     const [orgdetaisl, setOrgDetails] = useState({})
     const client = axios.create({
-        baseURL: 'http://localhost:5000',
+        baseURL: 'https://digizip.onrender.com',
     })
     const session = getSession('user');
     useEffect(() => {
@@ -27,37 +27,25 @@ export default function About() {
     return (
       <div>
         <div>
-            <h1>Org Name : - {orgdetaisl.name}</h1>
-            <h1>Org Admin : - {orgdetaisl.admin}</h1>
-            <h1>for futher queries please mail on above email</h1>
+            <h5 style={{color:'white', marginLeft:'2vw', fontFamily:"'Poppins', sans-serif"}}>Organization Name - {orgdetaisl.name}</h5>
+            <h5 style={{color:'white', marginLeft:'2vw', fontFamily:"'Poppins', sans-serif"}}>Organization Admin - {orgdetaisl.admin}</h5>
+            <h6 style={{color:'gray', marginLeft:'2vw', fontStyle:"italic"}}> * For any queries, please communicate through above  email</h6> <hr style={{color:'white'}} /><br /> <br />
         </div>
         <div className={styles.cardsDiv}>
                 {
                     org.map((file)=>{
-                        return <div>
-                            Preset Name : - {file.Preset_name}
+                        return <div className={styles.card}>
+                            Preset Name - {file.Preset_name}
                             <br />
-                            created at : - {file.createdAt}
+                            Created at - {file.createdAt}
                             <br />
-                            Last Updated at : - {file.updatedAt}
+                            Last Updated at - {file.updatedAt}
                             <br />
-                            Description : - {file.description}
+                            Description - {file.description}
                             <br />
-                            Access valid Till : - {file.time}
+                            Access valid till - {file.time}
                             <br />
-                            Files contains in presets are : - 
-                            
-                            {file.files.map((sharedfiles)=>{
-                                return <div>
-                                    <br />
-                                    File CID : - {sharedfiles.CID}
-                                    <br />
-                                    File Name : - {sharedfiles.FileName}
-                                    <br />
-                                    Access Type : - {sharedfiles.accesstype}
-                                    <br />
-                                </div>
-                            })}
+
                         </div>
                     })
                 }

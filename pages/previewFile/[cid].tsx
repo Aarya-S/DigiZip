@@ -58,12 +58,13 @@ export default function PreviewFile() {
         <div style={{marginTop:'5vh'}}>
             {file.byteLength>0?<PdfViewer file={file}/>:<p>Loading...</p>}
             <br></br>
-            {cid.split('.')[2]=="download" || cid.split('.')[2]=="isuser"?
-            <button style={{marginLeft:'5vw', backgroundColor: '#1e1e1e', color: 'white',  border: '2px solid white',borderRadius: '5px',padding:'10px', fontSize: '14px',fontWeight: '600',cursor: 'pointer',width:'10%',height: '100%', transition: 'all 0.3s ease-in-out'}} onClick={()=>{retrieveFiles(cid.split('.')[0],cid.split('.')[1])}}>Download</button>:""}
             {
               cid.split('.')[3]?
-              <p>Description : {cid.split('.')[3]}</p>:""
-            }
+              <p style={{marginLeft:'5vw', color: 'white', padding:'10px', fontSize: '18px',fontWeight: '600',cursor: 'pointer',height: '100%'}}>Description : {cid.split('.')[3]}</p>:""
+            } <br />
+            {cid.split('.')[2]=="download" || cid.split('.')[2]=="isuser"?
+            <button style={{marginLeft:'5vw', backgroundColor: '#1e1e1e', color: 'white',  border: '2px solid white',borderRadius: '5px',padding:'10px', fontSize: '14px',fontWeight: '600',cursor: 'pointer',width:'10%',height: '100%', transition: 'all 0.3s ease-in-out'}} onClick={()=>{retrieveFiles(cid.split('.')[0],cid.split('.')[1])}}>Download</button>:""} <br />
+        
             <br></br>
             <br></br>
             <br></br>

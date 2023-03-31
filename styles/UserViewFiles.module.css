@@ -102,3 +102,29 @@
 .buttonsDivOrg {
     height: 80px;
 }
+
+.card {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    box-sizing: border-box;
+    color: #e5e5e5;
+    width: 45vw;
+    height: auto;
+    background: rgba(90, 77, 77, 0.15);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.5s;
+    display:grid;
+    flex-direction:column;
+    /* align-items:flex-start; */
+    justify-content: left;
+    user-select: none;
+    font-weight: bolder;
+  }
+  
