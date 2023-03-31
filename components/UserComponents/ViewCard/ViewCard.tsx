@@ -121,7 +121,7 @@ export default function ViewCardUser(prop: any) {
         switch (columnKey) {
             case "name":
                 return (
-                    <>{user.org_hash}</>
+                    <Link href={'org/'+user.org_hash}>{user.org_hash}</Link>
                 );
             case "access_type":
                 return (

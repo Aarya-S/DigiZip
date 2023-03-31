@@ -129,7 +129,7 @@ export default function SendFiles() {
         alert("Sharing files...");
         const date = new Date(preset_duration);
         const today = new Date();
-        if(filesarray.length!=0 && preset_access!="defaultAccess" && date>today && preset_orgcode!="" && preset_orgname!="" && preset_title!="" && preset_desc!=""){
+        if(filesarray.length!=0 && preset_access!="defaultAccess" && date>today && preset_orgcode!="" && preset_title!="" && preset_desc!=""){
             await client.post("/preset/add",{
                 "email": Usersession.email,
                 "Preset_name": preset_title,
@@ -179,17 +179,17 @@ export default function SendFiles() {
 
             <div className={styles.orgInfoLine}>
 
-                <div className={styles.orgCodeInput}>
+                <div className={styles.fileTitleLine}>
 
                     <input type="text" required value={preset_orgcode} placeholder="Enter Organization Code" onChange={(e)=>setPresetOrgCode(e.target.value)}/>
 
                 </div>
 
-                <div className={styles.orgNameInput}>
+                {/* <div className={styles.orgNameInput}>
 
                     <input type="text" value={preset_orgname} placeholder="Enter Organization Name" onChange={(e)=>setPresetOrgName(e.target.value)}/>
 
-                </div>
+                </div> */}
 
             </div>
 

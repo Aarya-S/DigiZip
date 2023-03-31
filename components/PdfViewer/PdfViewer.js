@@ -80,17 +80,15 @@ const PdfViewer = (filedata) => {
     
 
     return (
-        <div>
-            {/* <h1>PDF.js Sample Example</h1> */}
-            {/* <button onClick={zoomIn}>Zoom In</button>
-             */}
             <div style={{ paddingLeft: '0', 
                           paddingRight: '0',
                           marginLeft: 'auto',
                           marginRight: 'auto',
                           display: 'block',
                           width: '650px'}}  ref={pageRenderRef}>
-        </div>
+                            {/* <h1>PDF.js Sample Example</h1> */}
+            {/* <button onClick={zoomIn}>Zoom In</button>
+             */}
         </div>
     )
 }
