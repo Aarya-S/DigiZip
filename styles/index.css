@@ -4,7 +4,7 @@
 
 .heads {
     font-family: Arial, sans-serif;
-    background-image: url("../public/backg_1920x1080.jpg"); 
+    background-image: url("/backg_1920x1080.jpg"); 
     background-size:cover;
     background-position: center;
     color: #ffffff;
