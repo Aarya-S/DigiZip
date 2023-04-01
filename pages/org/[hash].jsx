@@ -34,7 +34,7 @@ export default function About() {
         <div className={styles.cardsDiv}>
                 {
                     org.map((file)=>{
-                        return <div className={styles.card}>
+                        return <div className={styles.card} key="1">
                             Preset Name - {file.Preset_name}
                             <br />
                             Created at - {file.createdAt}
