@@ -21,49 +21,54 @@
 }
 
 .customInput {
-    border: 0;
-    outline: 0;
-    background-color: #e5e5e5;
-    padding: 0.5rem 0.5rem;
-    width: 300px;
-    height: 2rem;
-    margin: 1rem 2rem;
-    color: black;
-    border-radius: 10px;
-    padding-left: 15px;
+  border: 0;
+  outline: 0;
+  background-color: grey;
+  padding: 0.5rem 0.5rem;
+  width: 65%;
+  height: 2rem;
+  margin: 1rem 2rem;
+  border: 1px solid #fff;
+  color: white;
+  border-radius: 5px;
+  padding-left: 15px;
 }
 
 .customInput::placeholder {
-    color: grey;
-    padding-left: 15px;
+  color: grey;
+  padding-left: 15px;
+}
+
+.customButton {
+  min-width: 65%;
+  /* height: 2rem; */
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #fff;
+  border-radius: 5px;
 }
 
 .loginButton {
-    background-color: #fff;
-    border: 0;
-    outline: 0;
-    padding: 0.5rem 1rem;
-    margin: 1rem 2rem;
-    border-radius: 24px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: black;
-    cursor: pointer;
-    transition: all 0.4s ease-in-out;
-    width: 150px;
-}
-
-.loginButton:hover {
-    background-color: #ffffff;
+  background-color: #fff;
+  border: 0;
+  outline: 0;
+  padding: 0.5rem 1rem;
+  margin: 1rem 2rem;
+  border-radius: 24px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: black;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  width: 150px;
 }
 
 .card {
-    padding-top: 30px;
+    /* padding-top: 30px; */
     padding-bottom: 20px;
     box-sizing: border-box;
     color: #e5e5e5;
-    width: 20vw;
-    height: 105vh;
+    width: 30vw;
+    /* height: 75vh; */
     background: rgba(90, 77, 77, 0.15);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);

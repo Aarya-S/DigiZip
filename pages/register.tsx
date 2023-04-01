@@ -177,24 +177,24 @@ export default function Register() {
             <div className={styles.card}>
               
               <div className={styles.pp}>
-                Are You an <br /> User <br />
+                User <br/> Registration
                 </div>
                 <br />    
                 <label style={{alignSelf:'center'}} htmlFor="loginId" >Enter Email ID/Set UserName</label>
-                <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
+                <input className={styles.customInput} style={{alignSelf:'center'}} type="email" onChange={(e)=>{setEmail(e.target.value)}} id="loginId" name="loginId"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="pass" >Set Password</label>
-                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
+                <input className={styles.customInput} style={{alignSelf:'center'}} type="password" onChange={(e)=>{setPassword(e.target.value)}} id="pass" name="pass"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="cnfrmpass" >Confirm Password</label>
-                <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setIsPasswordValid(e.target.value)}} id="cnfrmpass" name="pass"/><br/>
+                <input className={styles.customInput} style={{alignSelf:'center'}} type="password" onChange={(e)=>{setIsPasswordValid(e.target.value)}} id="cnfrmpass" name="pass"/><br/>
                 <label style={{alignSelf:'center'}} htmlFor="aadhar" >Aadhaar Number</label>
-                <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setAdhaar(e.target.value)}} id="aadhar" name="loginId"/><br/>
+                <input className={styles.customInput} style={{alignSelf:'center'}} type="number" onChange={(e)=>{setAdhaar(e.target.value)}} id="aadhar" name="loginId"/><br/>
 
                 {error?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{error}</label>:""}     
                 {loading?<label htmlFor="loading" style={{alignSelf:'center'}} >Loading...</label>:
-                    <button style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>SignUp</button>}
+                    <button className={styles.customButton} style={{alignSelf:'center',width:'10vw'}} onClick={handleSubmit}>SignUp</button>}
                 {loading==true && error==""?<><label style={{alignSelf:'center'}} htmlFor="otp" >Verify OTP:</label>
-                <input style={{alignSelf:'center'}} onChange={(e)=>{setOTP(e.target.value)}} id="otp" name="otp"/><br/>
-                <button style={{alignSelf:'center',width:'10vw'}} onClick={handleotpUser}>Submit</button></>:""}
+                <input className={styles.customInput} style={{alignSelf:'center'}} onChange={(e)=>{setOTP(e.target.value)}} id="otp" name="otp"/><br/>
+                <button className={styles.customButton} style={{alignSelf:'center',width:'10vw'}} onClick={handleotpUser}>Submit</button></>:""}
                 {error?<label htmlFor="error" style={{color: "red",alignSelf:"center",marginTop:"20px"}}>{error}</label>:""}     
 
             <br/>
@@ -204,31 +204,31 @@ export default function Register() {
 
             <div className={styles.card}>
             
-              <div className={styles.pp}>
-                Are You an Organization <br />
+              <div className={styles.pp} style={{paddingTop: 80}}>
+                Organization<br /> Registration
                 </div>
                 <br />
                              
                     <label style={{alignSelf:'center'}} htmlFor="orgname">Organization Name</label>
-                    <input style={{alignSelf:'center'}} type="text" onChange={(e)=>{setName(e.target.value)}} id="orgname" name="orgname"/><br/>
+                    <input className={styles.customInput} style={{alignSelf:'center'}} type="text" onChange={(e)=>{setName(e.target.value)}} id="orgname" name="orgname"/><br/>
 
                     <label style={{alignSelf:'center'}} htmlFor="gstno">Registration Number</label>
-                    <input style={{alignSelf:'center'}} type="number" onChange={(e)=>{setGstNo(e.target.value)}} id="gstno" name="gstno"/><br/>
+                    <input className={styles.customInput} style={{alignSelf:'center'}} type="number" onChange={(e)=>{setGstNo(e.target.value)}} id="gstno" name="gstno"/><br/>
 
                     <label style={{alignSelf:'center'}} htmlFor="admin" >Enter Admin Email ID</label>
-                    <input style={{alignSelf:'center'}} type="email" onChange={(e)=>{setAdminEmail(e.target.value)}} id="admin" name="admin"/><br/>
+                    <input className={styles.customInput} style={{alignSelf:'center'}} type="email" onChange={(e)=>{setAdminEmail(e.target.value)}} id="admin" name="admin"/><br/>
 
                     <label style={{alignSelf:'center'}} htmlFor="orgpass" >Set Password</label>
-                    <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setAdminPassword(e.target.value)}} id="orgpass" name="orgpass"/><br/>
+                    <input className={styles.customInput} style={{alignSelf:'center'}} type="password" onChange={(e)=>{setAdminPassword(e.target.value)}} id="orgpass" name="orgpass"/><br/>
 
                     <label style={{alignSelf:'center'}} htmlFor="orgcpass" >Confirm Password</label>
-                    <input style={{alignSelf:'center'}} type="password" onChange={(e)=>{setAdminConfirmPassword(e.target.value)}} id="orgcpass" name="orgcpass"/><br/>
+                    <input className={styles.customInput} style={{alignSelf:'center'}} type="password" onChange={(e)=>{setAdminConfirmPassword(e.target.value)}} id="orgcpass" name="orgcpass"/><br/>
                     {/* {name+" "+ gstNo+" "+  adminEmail+" "+  adminPassword+" "+  adminConfirmPassword} */}
                     {loading?<label htmlFor="loading" style={{alignSelf:'center'}}>Loading...</label>:
-                    <button style={{alignSelf:'center',width:'10vw'}} onClick={handleorgsubmit}>SignUp</button>}
+                    <button className={styles.customButton} style={{alignSelf:'center',width:'10vw'}} onClick={handleorgsubmit}>SignUp</button>}
                     {loading==true && orgerror==""?<><label style={{alignSelf:'center'}} htmlFor="otporg" >Verify OTP:</label>
                     <input style={{alignSelf:'center'}} onChange={(e)=>{setOrgOTP(e.target.value)}} id="otporg" name="otporg"/><br/>
-                    <button style={{alignSelf:'center',width:'10vw'}} onClick={handleotpOrg}>Submit</button></>:""}
+                    <button className={styles.customButton} style={{alignSelf:'center',width:'10vw'}} onClick={handleotpOrg}>Submit</button></>:""}
                 <br/>
             </div>
       </div>
