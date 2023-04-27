@@ -17,12 +17,11 @@ export default function PreviewFile() {
     useEffect(() => {
       // console.log(cid.split('.')[4])
       // console.log(cid.split('.')[2])
-
-      if(cid.split('.')[4]=="isorg"){
+      if(cid.split('.')[5]=="isorg"){
         const getorg = getSession('orgcontent');
         if(getorg && file.byteLength==0){
           for(let i=0;i<getorg.length;i++){
-            if(getorg[i].generated_hash_preset==cid.split('.')[5]){
+            if(getorg[i].generated_hash_preset==cid.split('.')[6]){
               axios.get(path).then((res)=>{
                 setFile(decompressArrayBuffer(decryptArrayBuffer(res.data)))
               }).catch((err)=>{
