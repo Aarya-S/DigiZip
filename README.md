@@ -33,6 +33,3 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
-imp stuff 
-web3.storage api token  = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGRhQjE0NzM2MTdFRDQ1OUFBMjREOUI5YWE5OEQ5YTkzMTFkNTVFNDkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE5NDA4MzY0NTksIm5hbWUiOiJEaWdpWmlwIn0._uFWtK_c-ZGJl0rQjWrSVTjBPPf-QIvz4thIi4yymNw
