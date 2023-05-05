@@ -33,6 +33,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+Check out our [Backend @DigiZip-Backend](https://github.com/RoHiT-engi/DigiZip-Backend) for Api servings 
+
 ## Env variables 
 ```bash
 NEXT_PUBLIC_SECRETKEY = 'web3 secret key'
